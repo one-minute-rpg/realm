@@ -1,0 +1,29 @@
+{
+  "name": "realm",
+  "version": "1.0.0",
+  "description": "Builder de histirias para o One Minute RPG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/one-minute-rpg/realm.git"
+  },
+  "author": "Pablo Brodt / Ben-hur Santos Ott / Talita Korb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/one-minute-rpg/realm/issues"
+  },
+  "homepage": "https://github.com/one-minute-rpg/realm#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-load": "^1.1.15",
+    "express-session": "^1.14.1",
+    "mongo-sanitize": "^1.0.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.0",
+    "mongoose-findorcreate": "^0.1.2"
+  }
+}
