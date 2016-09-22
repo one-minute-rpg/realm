@@ -6,67 +6,67 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
             title:{
-                type: string,
+                type: String,
                 required: true
             },
             character: {
                 itens: {
-                    type: [mongoose.schema.ObjectID],
+                    type: [mongoose.Schema.ObjectID],
                     ref: 'Item'
                 },
                 attributes: {
                     health: {
                         current: {
-                            type: number,
+                            type: Number,
                             required: true
                         },
                         max: {
-                            type: number,
+                            type: Number,
                             required: true
                         }
                     },
                     strength: {
                         current: {
-                            type: number,
+                            type: Number,
                             required: true
                         },
                         max: {
-                            type: number,
+                            type: Number,
                             required: true
                         }
                     },
                     agility: {
                         current: {
-                            type: number,
+                            type: Number,
                             required: true
                         },
                         max: {
-                            type: number,
+                            type: Number,
                             required: true
                         }
                     },
                     intelligence: {
                         current: {
-                            type: number,
+                            type: Number,
                             required: true
                         },
                         max: {
-                            type: number,
+                            type: Number,
                             required: true
                         }
                     }
                 }
             },
             itens: {
-                type: [mongoose.schema.ObjectId],
+                type: [mongoose.Schema.ObjectId],
                 ref: 'Scene'
             },
             creatures: {
-                type: [mongoose.schema.ObjectId],
+                type: [mongoose.Schema.ObjectId],
                 ref: 'Creature'
             },
             scenes: {
-                type: [mongoose.schema.ObjectId],
+                type: [mongoose.Schema.ObjectId],
                 ref: 'Scene'
             }
         });

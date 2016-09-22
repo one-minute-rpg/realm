@@ -6,28 +6,28 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
             name:{
-                type: string,
+                type: String,
                 required: true
             },
             level: {
-                type: number,
+                type: Number,
                 required: true
             },
             attributes: {
                 health: {
-                    type: number,
+                    type: Number,
                     required: true
                 },
                 strength: {
-                    type: number,
+                    type: Number,
                     required: true
                 },
                 agility: {
-                    type: number,
+                    type: Number,
                     required: true
                 },
                 intelligence: {
-                    type: number,
+                    type: Number,
                     required: true
                 }
             }

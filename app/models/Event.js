@@ -6,20 +6,20 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema( {
             event_type: {
-                type: string,
+                type: String,
                 required: true
             },
             text: {
-                type: string
+                type: String
             },
             attribute: {
-                type: string
+                type: String
             },
             value: {
-                type: number
+                type: Number
             },
             scene_id: {
-                type: mongoose.schema.ObjectId,
+                type: mongoose.Schema.ObjectId,
                 ref: 'Scene'
             }
         });

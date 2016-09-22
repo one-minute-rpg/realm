@@ -6,29 +6,29 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
             text: {
-                type: string,
+                type: String,
                 required: true
             },
             require_item_ids: {
-                type: [mongoose.schema.ObjectId],
+                type: [mongoose.Schema.ObjectId],
                 ref: 'Item'
             },
             require_attribute_value: {
                 health: {
-                    type: number
+                    type: Number
                 },
                 strength: {
-                    type: number
+                    type: Number
                 },
                 agility: {
-                    type: number
+                    type: Number
                 },
                 intelligence: {
-                    type: number
+                    type: Number
                 }
             },
             events: {
-                type: [mongoose.schema.ObjectId],
+                type: [mongoose.Schema.ObjectId],
                 ref: 'Event'
             }
         });
