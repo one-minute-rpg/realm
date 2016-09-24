@@ -6,8 +6,13 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
             title:{
-                type: String,
-                required: true
+                pt_BR: {
+                    type: String,
+                    required: true
+                },
+                en_US: {
+                    type: String
+                }
             },
             character: {
                 itens: {
