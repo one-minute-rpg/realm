@@ -7,7 +7,7 @@ module.exports = function(app){
 
     app.route('/stories')
         .get(controller.findAll)
-        .post(controller.insert);
+        .post(controller.save);
     
     app.route('/story/:id')
         .get(controller.findById)
