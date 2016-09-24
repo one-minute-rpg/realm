@@ -5,11 +5,15 @@ var bodyParser = require('body-parser');
 
 module.exports = function(){
     var app = express();
-
+    
     app.set('port', 3000);
 
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
+
+    //Definindo view engine e a pasta de views
+    app.set('view engine', 'ejs');
+    app.set('views','./app/views');
 
     load('models', {cwd: 'app'})
         .then('controllers')
