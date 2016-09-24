@@ -11,8 +11,7 @@ module.exports = function() {
             },
             character: {
                 itens: {
-                    type: [mongoose.Schema.ObjectID],
-                    ref: 'Item'
+                    type: [mongoose.Schema.ObjectID] //Array com ids de itens
                 },
                 attributes: {
                     health: {
@@ -89,10 +88,10 @@ module.exports = function() {
                         type: Number
                     },
                     item_id: {
-                        type: mongoose.Schema.ObjectId
+                        type: mongoose.Schema.ObjectId //Id do item afetado pelo evento
                     },
                     quantity: {
-                        type: Number
+                        type: Number //Numer oque afetará a quantidade do item
                     }
                 }]
             }],
@@ -143,7 +142,7 @@ module.exports = function() {
                             required: true
                         },
                         require_item_ids: [{
-                            type: [mongoose.Schema.ObjectId], //array contento os ids dos itens
+                            type: [mongoose.Schema.ObjectId], //Array contento os ids dos itens
                         }],
                         require_attribute_value: {
                             health: {
@@ -172,16 +171,32 @@ module.exports = function() {
                                     type: String
                                 }
                             },
+                            attribute: {
+                                type: String
+                            },
+                            value: {
+                                type: Number
+                            },
+                            item_id: {
+                                type: mongoose.Schema.ObjectId //Id do item afetado pelo evento
+                            },
+                            quantity: {
+                                type: Number //Numer oque afetará a quantidade do item
+                            },
                             scene_id: {
-                                type: mongoose.Schema.ObjectId
+                                type: mongoose.Schema.ObjectId //Id da cena a ser encaminhado
                             }
                         }]
                     }],
                     challenge:{
-                        type: mongoose.Schema.ObjectId
+                        type: mongoose.Schema.ObjectId //Id da criatura do desafio
                     },
-                    on_win: {},
-                    on_lose: {}
+                    on_win: {
+                        type: mongoose.Schema.ObjectId //Id da cena a ser encaminhado após vencer o desafio
+                    },
+                    on_lose: {
+                        type: mongoose.Schema.ObjectId //Id da cena de game over
+                    }
                 }]
         });
 
