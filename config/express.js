@@ -8,12 +8,13 @@ module.exports = function(){
     
     app.set('port', 3000);
 
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(bodyParser.json());
-
+    app.use(express.static('./public'));
     //Definindo view engine e a pasta de views
     app.set('view engine', 'ejs');
     app.set('views','./app/views');
+
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
 
     load('models', {cwd: 'app'})
         .then('controllers')
@@ -24,6 +25,7 @@ module.exports = function(){
     app.get('*', function(req, res) {
         res.status(404).render('404');
     });
+
 
     return app;
 };
