@@ -1,0 +1,24 @@
+.card{
+    width: 200px;
+    height: 300px;
+    display: inline-block;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.card .header{
+    height: 150px;
+    background-color: lightgray;
+}
+
+.card .info{
+    height: 90px;
+    background-color: #121213;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.card .footer{
+    height: 10px;
+    border-top: solid 1px lightgray;
+}

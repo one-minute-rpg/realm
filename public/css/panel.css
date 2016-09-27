@@ -1,0 +1,21 @@
+.panel{
+    background-color: #121213;
+    height: 100%;
+}
+
+.panel .menu{
+    color: #FFFFFF;
+}
+
+.panel .menu .list-group-item{
+    background-color: inherit !important;
+    border: none !important;
+}
+
+.panel .menu .list-group-item a{
+    color: #CB9960 !important;
+}
+
+.panel .col-lg-9{
+    height: 100%;
+}
