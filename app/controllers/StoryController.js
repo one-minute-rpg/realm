@@ -7,11 +7,12 @@ module.exports = function(app){
 
     var controller = {};
     var Story = app.models.Story;
+    var StoryResume = app.models.StoryResume;
 
     controller.findAll = function(req, res){
-        var promise = Story.find().exec()
-            .then(function(stories){
-                res.json(stories);
+        var promise = StoryResume.find().exec()
+            .then(function(resumes){
+                res.json(resumes);
             })
             .catch(function(error){
                 //TODO: Implementar log? Tratar erro
