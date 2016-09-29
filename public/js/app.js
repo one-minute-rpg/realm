@@ -1,5 +1,5 @@
 
-angular.module('realm', ['ngRoute', 'ngResource', 'myComponents'])
+angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap'])
     .config(function($routeProvider, $httpProvider) {
 
         $routeProvider
