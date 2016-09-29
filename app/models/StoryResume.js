@@ -24,7 +24,7 @@ module.exports = function() {
             scenes: {
                 type: Number
             },
-            description{
+            description: {
                 type: String
             }
         });
