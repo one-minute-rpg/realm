@@ -18,7 +18,7 @@ module.exports = function() {
                 type: mongoose.Schema.ObjectId,
                 ref: 'Story'
             },
-            image: {
+            cover: {
                 type: String
             },
             scenes: {
