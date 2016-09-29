@@ -20,6 +20,12 @@ module.exports = function() {
             },
             image: {
                 type: String
+            },
+            scenes: {
+                type: Number
+            },
+            description{
+                type: String
             }
         });
 
