@@ -1,70 +1,67 @@
 <!-- public/index.html -->
 <!doctype html>
 <html ng-app="realm">
-    <head>
-        <meta name="viewport" content="width=device-width">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css" />
-        <link rel="stylesheet" href="css/base.css" />
-        <link rel="stylesheet" href="css/partials.css" />
-        <link rel="stylesheet" href="css/card.css" />
-        <link rel="stylesheet" href="css/panel.css" />
-        <link rel="stylesheet" href="css/storyList.css" />
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row panel">
-                <div class="col-lg-3 menu">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <img src="img/logo.png" class="img-responsive" alt="One Minute RPG" />
-                        </li>
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            Bem Vindo, {{usuario}}
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#/stories">
-                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                                Home
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#/story/add">
-                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                                Criar História
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                Configurações
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                Sair
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-9">
-                    <div class="content" ng-view></div>
-                </div>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/partials.css" />
+    <link rel="stylesheet" href="css/card.css" />
+    <link rel="stylesheet" href="css/panel.css" />
+    <link rel="stylesheet" href="css/storyList.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row panel">
+            <div class="col-lg-3 menu">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <img src="img/logo.png" class="img-responsive" alt="One Minute RPG" />
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Bem Vindo, {{usuario}}
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#/stories">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#/story/add">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Criar História
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configurações
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="content" ng-view></div>
             </div>
         </div>
-        
+    </div>
 
-        <script src="vendor/angular/angular.js"></script>
-        <script src="vendor/angular-route/angular-route.js"></script>
-        <script src="vendor/angular-resource/angular-resource.js"></script>
-        <script src="vendor/angular-animate/angular-animate.min.js"></script>
-        <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/controllers/StoryController.js"></script>
-        <script src="js/services/StoryService.js"></script>
-        <script src="js/directives/components/my-components.js"></script>
-    </body>
+
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-route/angular-route.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/angular-animate/angular-animate.min.js"></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/StoryController.js"></script>
+    <script src="js/services/StoryService.js"></script>
+</body>
+
 </html>
