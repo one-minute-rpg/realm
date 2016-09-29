@@ -4,7 +4,11 @@ angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap'])
 
         $routeProvider
         .when('/stories', {
-            templateUrl: 'partials/storiesList.html',
+            templateUrl: 'partials/story-list.html',
+            controller: 'StoryController'
+        })
+        .when('/story/add',{
+            templateUrl: 'partials/story-register.html',
             controller: 'StoryController'
         });
 
