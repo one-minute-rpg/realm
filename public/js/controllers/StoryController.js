@@ -4,13 +4,13 @@ angular.module('realm')
     .controller('StoryController', function($scope, StoryService, $uibModal) {
 
         $scope.storyResumes = [];
-
         $scope.story = {};
 
         $scope.init = search;
+        $scope.detail = detail;
+        $scope.save = save;
 
-        $scope.detail = function(story) {
-
+        function detail(story) {
             $uibModal.open({
                 templateUrl: 'js/directives/components/modal/modal-historia.template.html',
                 controller: 'StoryModalController',
@@ -18,11 +18,11 @@ angular.module('realm')
                     resumedStory: story
                 }
             });
-        }
+        };
 
-        $scope.save = function() {
+        function save() {
             StoryService.saveStory($scope.story);
-        }
+        };
 
         function search() {
             StoryService.query(function(stories) {
