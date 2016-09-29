@@ -1,36 +1,41 @@
 // public/js/controllers/StoryController.js
 
 angular.module('realm')
-.controller('StoryController', function($scope, Story, $uibModal) {
+    .controller('StoryController', function($scope, StoryService, $uibModal) {
 
-    $scope.storyResumes = [];
+        $scope.storyResumes = [];
 
-    $scope.init = function(){
-        search();
-    };
+        $scope.story = {};
 
-    $scope.detail = function(story){
-        
-        $uibModal.open({
-            templateUrl: 'js/directives/components/modal/modal-historia.template.html',
-            controller: 'StoryModalController',
-            resolve:{
-                resumedStory: story
-            }
-        });
-    }
+        $scope.init = search;
 
-    function search(){
-        Story.query(function(stories){
-            $scope.storyResumes = stories;
-        },
-        function(error){
-            console.log("Não foi possível carregar as histórias")/
-            console.log(error);
-        });
-    };
-    $scope.init();
-})
-.controller('StoryModalController', function($scope, resumedStory){
-    $scope.resume = resumedStory;
-});
+        $scope.detail = function(story) {
+
+            $uibModal.open({
+                templateUrl: 'js/directives/components/modal/modal-historia.template.html',
+                controller: 'StoryModalController',
+                resolve: {
+                    resumedStory: story
+                }
+            });
+        }
+
+        $scope.save = function() {
+            StoryService.saveStory($scope.story);
+        }
+
+        function search() {
+            StoryService.query(function(stories) {
+                    $scope.storyResumes = stories;
+                },
+                function(error) {
+                    console.log("Não foi possível carregar as histórias") /
+                        console.log(error);
+                });
+        };
+
+        $scope.init();
+    })
+    .controller('StoryModalController', function($scope, resumedStory) {
+        $scope.resume = resumedStory;
+    });

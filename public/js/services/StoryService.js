@@ -1,5 +1,28 @@
-
 angular.module('realm')
-    .factory('Story', function($resource){
-        return $resource('/stories');
+    .factory('StoryService', function($resource) {
+
+        var Story = $resource('/myStories');
+
+        Story.saveStory = saveStory;
+
+        function saveStory(story) {
+
+            var resume = createResume(story);
+
+        }
+
+        function createResume(story) {
+
+            var resume = {};
+
+            resume.title = { pt_BR: story.title.pt_BR };
+
+            resume.description = story.description;
+
+            resume.cover = story.cover;
+
+            return resume;
+        }
+
+        return Story;
     });

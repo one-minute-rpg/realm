@@ -2,14 +2,16 @@
 // Configurações de rotas para operações com historias
 
 
-module.exports = function(app){
+module.exports = function(app) {
     var controller = app.controllers.StoryController;
 
-    app.route('/stories')
-        .get(controller.findAll)
+    app.route('/myStories/add')
         .post(controller.save);
-    
-    app.route('/story/:id')
+
+    app.route('/myStories')
+        .get(controller.findAll);
+
+    app.route('/myStories/:id')
         .get(controller.findById)
         .delete(controller.delete);
 }

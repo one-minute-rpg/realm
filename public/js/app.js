@@ -3,11 +3,11 @@ angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap'])
     .config(function($routeProvider, $httpProvider) {
 
         $routeProvider
-        .when('/stories', {
+        .when('/myStories', {
             templateUrl: 'partials/story-list.html',
             controller: 'StoryController'
         })
-        .when('/story/add',{
+        .when('/myStories/add',{
             templateUrl: 'partials/story-register.html',
             controller: 'StoryController'
         });
