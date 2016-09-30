@@ -3,84 +3,88 @@
 
 var sanitize = require('mongo-sanitize');
 
-module.exports = function(app){
+module.exports = function(app) {
 
     var controller = {};
     var Story = app.models.Story;
     var StoryResume = app.models.StoryResume;
 
-    controller.findAll = function(req, res){
+    controller.findAll = function(req, res) {
         var promise = StoryResume.find().exec()
-            .then(function(resumes){
+            .then(function(resumes) {
                 res.json(resumes);
             })
-            .catch(function(error){
+            .catch(function(error) {
                 //TODO: Implementar log? Tratar erro
                 return console.error(error);
             });
     };
 
-    controller.findById = function(req, res){
+    controller.findById = function(req, res) {
         var _id = req.params.id;
 
-        var promise = Story.find({'_id': _id}).exec()
-            .then(function(story){
+        var promise = Story.find({ '_id': _id }).exec()
+            .then(function(story) {
                 res.json(story);
             })
-            .catch(function(error){
+            .catch(function(error) {
                 //TODO: Implementar log? Tratar erro
                 return console.error(error);
             });
     };
 
-    controller.save = function(req, res){
+    controller.save = function(req, res) {
         var story = req.body;
 
-        if(story.id){
-            update(story)
-                .then(function(story){
+        if (story.id) {
+            Story.findByIdAndUpdate(story.id, story).exec()
+                .then(function(story) {
                     res.json(contato);
                 })
-                .catch(function(error){
+                .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
                     return console.error(error);
                 });
-        }else{
-            insert(story)
-                .then(function(story){
+        } else {
+            Story.create(story)
+                .then(function(story) {
+                    StoryResume.create(createResume(story));
                     res.status(201).json(story);
                 })
-                .catch(function(error){
+                .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
-                    return console.error(error);
+                    console.error(error);
                 });
         }
 
     };
 
-    controller.delete = function(req, res){
+    controller.delete = function(req, res) {
         var _id = sanitize(req.params.id);
 
-        Story.remove({"_id" : _id}).exec()
-        .then(
-            function() {
-                res.status(204).end();
-            },
-            function(error) {
-                //TODO: Implementar log? Tratar erro
-                return console.error(error);
-            }
-        );
+        Story.remove({ "_id": _id }).exec()
+            .then(
+                function() {
+                    res.status(204).end();
+                },
+                function(error) {
+                    //TODO: Implementar log? Tratar erro
+                    return console.error(error);
+                }
+            );
     };
 
-    function insert(story){
-        return Story.create(story).exec();
-    };
+    function createResume(story) {
 
-    function update(story){
-        return Story.findByIdAndUpdate(story.id, story).exec();
-    };
+        var resume = {};
 
+        resume.title = { pt_BR: story.title.pt_BR };
+        resume.description = story.description;
+        resume.cover = story.cover;
+        resume.story_id = story._id;
+
+        return resume;
+    };
 
     return controller;
 }

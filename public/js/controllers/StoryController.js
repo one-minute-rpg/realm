@@ -1,7 +1,7 @@
 // public/js/controllers/StoryController.js
 
 angular.module('realm')
-    .controller('StoryController', function($scope, StoryService, $uibModal) {
+    .controller('StoryController', function($scope, $q, $uibModal, StoryService) {
 
         $scope.storyResumes = [];
         $scope.story = {};
@@ -21,10 +21,18 @@ angular.module('realm')
         };
 
         function save() {
-            StoryService.saveStory($scope.story);
+            StoryService.save($scope.story);
         };
 
         function search() {
+
+            var promise = StoryService.find();
+
+            $q.when(promise)
+                .then(loadStories)
+                .catch(function(error) { console.log(error) });
+
+            /*
             StoryService.query(function(stories) {
                     $scope.storyResumes = stories;
                 },
@@ -32,10 +40,17 @@ angular.module('realm')
                     console.log("Não foi possível carregar as histórias") /
                         console.log(error);
                 });
+            */
+        };
+
+        function loadStories(stories) {
+            console.log(stories);
+            $scope.storyResumes = stories;
         };
 
         $scope.init();
     })
     .controller('StoryModalController', function($scope, resumedStory) {
         $scope.resume = resumedStory;
+        console.log(resumedStory);
     });
