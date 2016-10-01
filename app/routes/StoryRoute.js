@@ -9,9 +9,9 @@ module.exports = function(app) {
         .post(controller.save);
 
     app.route('/myStories')
-        .get(controller.findAll);
+        .get(controller.find);
 
     app.route('/myStories/:id')
-        .get(controller.findById)
+        .get(controller.find)
         .delete(controller.delete);
 }

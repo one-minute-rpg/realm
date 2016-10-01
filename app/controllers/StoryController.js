@@ -4,33 +4,33 @@
 var sanitize = require('mongo-sanitize');
 
 module.exports = function(app) {
-
     var controller = {};
+
     var Story = app.models.Story;
     var StoryResume = app.models.StoryResume;
 
-    controller.findAll = function(req, res) {
-        var promise = StoryResume.find().exec()
-            .then(function(resumes) {
-                res.json(resumes);
-            })
-            .catch(function(error) {
-                //TODO: Implementar log? Tratar erro
-                return console.error(error);
-            });
-    };
-
-    controller.findById = function(req, res) {
+    controller.find = function(req, res) {
         var _id = req.params.id;
 
-        var promise = Story.find({ '_id': _id }).exec()
-            .then(function(story) {
-                res.json(story);
-            })
-            .catch(function(error) {
-                //TODO: Implementar log? Tratar erro
-                return console.error(error);
-            });
+        if(_id){
+            var promise = Story.find({ '_id': _id }).exec()
+                .then(function(story) {
+                    res.json(story);
+                })
+                .catch(function(error) {
+                    //TODO: Implementar log? Tratar erro
+                    return console.error(error);
+                });
+        }else{
+            var promise = StoryResume.find().exec()
+                .then(function(resumes) {
+                    res.json(resumes);
+                })
+                .catch(function(error) {
+                    //TODO: Implementar log? Tratar erro
+                    return console.error(error);
+                });
+        }
     };
 
     controller.save = function(req, res) {
