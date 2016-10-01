@@ -82,6 +82,7 @@ module.exports = function(app) {
         resume.description = story.description;
         resume.cover = story.cover;
         resume.story_id = story._id;
+        resume.scenesCount = story.scenes.length;
 
         return resume;
     };

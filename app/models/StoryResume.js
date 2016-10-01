@@ -21,7 +21,7 @@ module.exports = function() {
             cover: {
                 type: String
             },
-            scenes: {
+            scenesCount: {
                 type: Number
             },
             description: {
