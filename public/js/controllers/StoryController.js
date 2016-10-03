@@ -5,6 +5,7 @@ angular.module('realm')
 
         $scope.storyResumes = [];
         $scope.story = {};
+        $scope.messages = [];
 
         $scope.init = search;
         $scope.detail = detail;
@@ -21,36 +22,40 @@ angular.module('realm')
         };
 
         function save() {
-            StoryService.save($scope.story);
+            var promise = StoryService.save($scope.story);
+
+            $q.when(promise)
+                .then(addAlert)
+                .then(clear)
+                .catch(function(error){
+                    console.log(error);
+                });
         };
 
         function search() {
-
             var promise = StoryService.find();
 
             $q.when(promise)
                 .then(loadStories)
                 .catch(function(error) { console.log(error) });
-
-            /*
-            StoryService.query(function(stories) {
-                    $scope.storyResumes = stories;
-                },
-                function(error) {
-                    console.log("Não foi possível carregar as histórias") /
-                        console.log(error);
-                });
-            */
         };
 
         function loadStories(stories) {
-            console.log(stories);
             $scope.storyResumes = stories;
         };
+
+        function clear(){
+            $scope.story = {};
+        }
+
+        function addAlert(res){
+            if(res.status == 201){
+                $scope.messages.push({ type: 'success', msg: 'Salvo com sucesso!'});
+            }
+        }
 
         $scope.init();
     })
     .controller('StoryModalController', function($scope, resumedStory) {
         $scope.resume = resumedStory;
-        console.log(resumedStory);
     });
