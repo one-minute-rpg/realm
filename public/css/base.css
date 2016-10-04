@@ -1,15 +1,20 @@
-html, body{
-    height: 100% !important;
-}
-
-.content{
+html,
+body {
     height: 100%;
 }
 
-.myAlert{
+.content {
+    height: 100%;
+}
+
+.myAlert {
     position: absolute;
     z-index: 2;
     width: 100%;
     -webkit-box-shadow: px 0 20px 0 #121213;
     box-shadow: px 0 20px 0 #121213;
+}
+
+.container-fluid {
+    height: 100%;
 }
