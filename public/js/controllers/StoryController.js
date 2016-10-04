@@ -1,7 +1,7 @@
 // public/js/controllers/StoryController.js
 
 angular.module('realm')
-    .controller('StoryController', function($scope, $q, $uibModal, StoryService) {
+    .controller('StoryController',['$scope', '$q', '$uibModal', 'StoryService', function($scope, $q, $uibModal, StoryService) {
 
         $scope.storyResumes = [];
         $scope.story = {};
@@ -55,7 +55,7 @@ angular.module('realm')
         }
 
         $scope.init();
-    })
-    .controller('StoryModalController', function($scope, resumedStory) {
+    }])
+    .controller('StoryModalController', ['$scope', 'resumedStory', function($scope, resumedStory) {
         $scope.resume = resumedStory;
-    });
+    }]);

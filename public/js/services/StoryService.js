@@ -1,5 +1,5 @@
 angular.module('realm')
-    .factory('StoryService', function($http) {
+    .factory('StoryService', ['$http', function($http) {
 
         var service = {};
         service.save = save;
@@ -18,4 +18,4 @@ angular.module('realm')
         };
 
         return service;
-    });
+    }]);
