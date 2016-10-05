@@ -5,10 +5,10 @@
                 <uib-tab index="0" heading="Cenas">
                     <div class="table-responsive">
                         <table class="table">
-                            <tr ng-repeat="">
+                            <tr ng-repeat="scene in story.scenes">
                                 <td>icone</td>
-                                <td>titulo</td>
-                                <td>descricao</td>
+                                <td>{{scene.title.pt_BR}}...</td>
+                                <td>{{scene.text.pt_BR | limitTo:40}}...</td>
                                 <td>data/hora</td>
                                 <td>apagar</td>
                             </tr>
@@ -18,10 +18,10 @@
                 <uib-tab index="1" heading="Itens">
                     <div class="table-responsive">
                         <table class="table">
-                            <tr>
+                            <tr ng-repeat="item in story.itens">
                                 <td>icone</td>
-                                <td>titulo</td>
-                                <td>descricao</td>
+                                <td>{{item.name.pt_BR}}</td>
+                                <td>{{item.text.pt_BR}}</td>
                                 <td>data/hora</td>
                                 <td>apagar</td>
                             </tr>
@@ -31,9 +31,9 @@
                 <uib-tab index="3" heading="Criaturas">
                     <div class="table-responsive">
                         <table class="table">
-                            <tr>
+                            <tr ng-repeat="creature in story.creatures">
                                 <td>icone</td>
-                                <td>titulo</td>
+                                <td>{{creature.name.pt_BR}}</td>
                                 <td>descricao</td>
                                 <td>data/hora</td>
                                 <td>apagar</td>

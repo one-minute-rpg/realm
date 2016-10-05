@@ -10,7 +10,7 @@ angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap'])
                 templateUrl: 'partials/story-register.html',
                 controller: 'StoryController'
             })
-            .when('/myStories/edit', {
+            .when('/myStories/:id/edit', {
                 templateUrl: 'partials/story-edit.html',
                 controller: 'StoryController'
             });
