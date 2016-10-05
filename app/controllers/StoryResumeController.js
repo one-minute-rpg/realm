@@ -1,6 +1,3 @@
-// /app/controllers/StoryController
-// Controller para gerenciar operações de manutenção e pesquisa de historias
-
 var sanitize = require('mongo-sanitize');
 
 module.exports = function(app) {
@@ -18,6 +15,6 @@ module.exports = function(app) {
                 return console.error(error);
             });
     };
-    
+
     return controller;
 }

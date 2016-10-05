@@ -1,6 +1,3 @@
-// app/models/Story.js
-// Model para história
-
 var mongoose = require('mongoose');
 
 module.exports = function() {

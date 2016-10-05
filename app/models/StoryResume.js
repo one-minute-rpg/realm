@@ -1,6 +1,3 @@
-// app/models/StoryResume.js
-// Model para resumo de historia, armazenando apenas dados para pesquisa rapida
-
 var mongoose = require('mongoose');
 
 module.exports = function() {

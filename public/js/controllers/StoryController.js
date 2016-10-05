@@ -1,5 +1,3 @@
-// public/js/controllers/StoryController.js
-
 angular.module('realm')
     .controller('StoryController', ['$scope', '$q', 'StoryService', function($scope, $q, StoryService) {
 
