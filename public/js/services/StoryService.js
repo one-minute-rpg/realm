@@ -1,7 +1,7 @@
 angular.module('realm')
     .factory('StoryService', ['$http', function($http) {
-
         var service = {};
+
         service.save = save;
         service.find = find;
 
@@ -9,7 +9,7 @@ angular.module('realm')
             if (filters) {
                 return {};
             } else {
-                return $http.get('/myStories').then(function(response) { return response.data; });
+                //return $http.get('/myStories').then(function(response) { return response.data; });
             }
         };
 

@@ -1,6 +1,3 @@
-// /app/controllers/StoryController
-// Controller para gerenciar operações de manutenção e pesquisa de historias
-
 var sanitize = require('mongo-sanitize');
 
 module.exports = function(app) {
@@ -12,7 +9,7 @@ module.exports = function(app) {
     controller.find = function(req, res) {
         var _id = req.params.id;
 
-        if(_id){
+        if (_id) {
             var promise = Story.find({ '_id': _id }).exec()
                 .then(function(story) {
                     res.json(story);
@@ -21,10 +18,10 @@ module.exports = function(app) {
                     //TODO: Implementar log? Tratar erro
                     return console.error(error);
                 });
-        }else{
-            var promise = StoryResume.find().exec()
-                .then(function(resumes) {
-                    res.json(resumes);
+        } else {
+            var promise = Story.find().exec()
+                .then(function(stories) {
+                    res.json(stories);
                 })
                 .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
