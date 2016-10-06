@@ -1,4 +1,4 @@
-angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap'])
+angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngSanitize'])
     .config(function($routeProvider, $httpProvider) {
 
         $routeProvider
