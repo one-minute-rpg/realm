@@ -7,7 +7,7 @@ angular.module('realm')
 
         function find(filters) {
             if (filters) {
-                $http.get('/myStories/' + filters.id)
+                return $http.get('/myStories/' + filters.id);
             } else {
                 //return $http.get('/myStories').then(function(response) { return response.data; });
             }
