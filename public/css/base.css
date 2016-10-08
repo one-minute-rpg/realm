@@ -7,6 +7,10 @@ body {
     height: 100%;
 }
 
+.container-fluid {
+    height: 100%;
+}
+
 .myAlert {
     position: absolute;
     z-index: 2;
@@ -15,6 +19,32 @@ body {
     box-shadow: px 0 20px 0 #121213;
 }
 
-.container-fluid {
+.panel{
+    background-color: #121213;
+    height: 100%;
+}
+
+    .panel .menu{
+        color: #FFFFFF;
+    }
+
+    .panel .menu .list-group-item{
+        background-color: inherit !important;
+        border: none !important;
+    }
+
+    .panel .menu .list-group-item a{
+        color: #CB9960 !important;
+    }
+
+    .panel .col-lg-9{
+        height: 100%;
+    }
+    
+.partial-wrapper {
+    background-color: #FFFFFF;
+    color: #000000;
+    padding-top: 30px;
+    padding-bottom: 30px;
     height: 100%;
 }
