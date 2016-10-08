@@ -5,6 +5,7 @@ module.exports = function(app) {
 
     var Story = app.models.Story;
     var StoryResume = app.models.StoryResume;
+    var InternalServerError = app.models.error.InternalServerErrorModel;
 
     controller.find = function(req, res) {
         var _id = req.params.id;
@@ -12,11 +13,15 @@ module.exports = function(app) {
         if (_id) {
             var promise = Story.find({ '_id': _id }).exec()
                 .then(function(story) {
+                    if(!story.length){
+                        throw new InternalServerError('História inexistente.');
+                    }
                     res.json(story);
                 })
                 .catch(function(error) {
-                    //TODO: Implementar log? Tratar erro
-                    return console.error(error);
+                    delete error.error;
+                    res.status(error.httpStatus).send(error);
+                    console.log(error);
                 });
         } else {
             var promise = Story.find().exec()

@@ -45,6 +45,11 @@
                 </ul>
             </div>
             <div class="col-lg-10 content">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <toast timeout="2000"></toast>
+                    </div>
+                </div>
                 <div class="content" ng-view></div>
             </div>
         </div>
@@ -67,9 +72,12 @@
     <!--Services-->
     <script src="js/services/StoryService.js"></script>
     <script src="js/services/StoryResumeService.js"></script>
+    <script src="js/services/ToastService.js"></script>
     <!--Directives-->
-    <script src="js/directives/components/alert/alert.directive.js"></script>
+    <script src="js/directives/components/toast/ToastDirective.js"></script>
     <script src="js/directives/components/popover-menu/popover-menu.directive.js"></script>
+    <!--Constants-->
+    <script src="js/constants/ToastMessageType.js"></script>
 </body>
 
 </html>

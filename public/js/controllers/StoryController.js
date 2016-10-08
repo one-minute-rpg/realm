@@ -1,5 +1,5 @@
 angular.module('realm')
-    .controller('StoryController', ['$scope', '$q', '$routeParams', 'StoryService', function($scope, $q, $routeParams, StoryService) {
+    .controller('StoryController', ['$scope', '$q', '$routeParams', '$location', 'StoryService', 'ToastService', function($scope, $q, $routeParams, $location, StoryService, ToastService) {
 
         var id = $routeParams.id;
 
@@ -13,7 +13,9 @@ angular.module('realm')
             var promise = StoryService.save($scope.story);
 
             $q.when(promise)
-                .then(addAlert)
+                .then(function(){
+                    ToastService.success({ type: 'success', msg: 'Salvo com sucesso!' });
+                })
                 .then(clear)
                 .catch(function(error) {
                     console.log(error);
@@ -24,19 +26,18 @@ angular.module('realm')
             $scope.story = {};
         }
 
-        function addAlert(res) {
-            if (res.status == 201) {
-                $scope.messages.push({ type: 'success', msg: 'Salvo com sucesso!' });
-            }
-        }
-
         function find(filters){
             var promise = StoryService.find(filters);
         
             $q.when(promise)
                 .then(edit)
                 .catch(function(error){
+                    var message = { type: 'danger', msg: error.data.message };
+
+                    ToastService.error(message);
                     console.log(error);
+
+                    $location.path('/myStories');
                 });    
         }
 
