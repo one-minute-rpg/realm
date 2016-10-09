@@ -1,5 +1,5 @@
 angular.module('realm')
-    .controller('StoryResumeController', ['$scope', '$q', '$uibModal', 'StoryResumeService', function($scope, $q, $uibModal, StoryResumeService) {
+    .controller('StoryResumeController', ['$scope', '$q', '$location', '$uibModal', 'StoryResumeService', function($scope, $q, $location, $uibModal, StoryResumeService) {
 
         var service = StoryResumeService;
 
@@ -8,6 +8,7 @@ angular.module('realm')
 
         $scope.init = search;
         $scope.detail = detail;
+        $scope.edit = edit;
 
         function detail(story) {
             $uibModal.open({
@@ -30,6 +31,11 @@ angular.module('realm')
         function loadResumes(resumes) {
             $scope.resumes = resumes;
         };
+
+        function edit(resume){
+            $location.path('/myStories/' + resume.story_id + '/edit');
+            $event.stopPropagation();
+        }
 
         $scope.init();
     }])

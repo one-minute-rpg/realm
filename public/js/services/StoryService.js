@@ -6,7 +6,7 @@ angular.module('realm')
         service.find = find;
 
         function find(filters) {
-            if (filters) {
+            if (!!filters) {
                 return $http.get('/myStories/' + filters.id);
             } else {
                 //return $http.get('/myStories').then(function(response) { return response.data; });
