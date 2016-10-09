@@ -46,7 +46,7 @@ angular.module('realm')
         }
 
         function init(){
-            if(id){
+            if(!!id){
                 find({'id': id});
             }
         }
