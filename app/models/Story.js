@@ -57,6 +57,9 @@ module.exports = function() {
             }
         },
         itens: [{
+            item_id: {
+                type: Number
+            },
             type: {
                 type: String
             },
