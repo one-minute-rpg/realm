@@ -4,7 +4,6 @@ angular.module('realm')
         var id = $routeParams.id;
 
         $scope.story = {};
-        $scope.messages = [];
 
         $scope.save = save;
         $scope.init = init;
@@ -41,13 +40,20 @@ angular.module('realm')
                 });    
         }
 
-        function edit(story){
-            $scope.story = story;
+        function edit(id){
+            $q.when(StoryService.edit(id))
+                .then(fill)
+                .catch(console.log);
+        }
+
+        function fill(projection){
+            $scope.projection = projection;
         }
 
         function init(){
             if(!!id){
-                find({'id': id});
+                //find({'id': id});
+                edit(id);
             }
         }
 

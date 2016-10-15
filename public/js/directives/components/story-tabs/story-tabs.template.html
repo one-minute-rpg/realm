@@ -1,0 +1,62 @@
+<uib-tabset active="active">
+    <uib-tab index="0" heading="Cenas">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Nome</th>
+                    <th>texto</th>
+                    <th>Última Alteração</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="scene in scenes">
+                    <td>icone</td>
+                    <td>{{scene.title.pt_BR | limitTo:20}}...</td>
+                    <td>{{scene.text.pt_BR | limitTo:40}}...</td>
+                    <td>data/hora</td>
+                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                </tr>
+            </table>
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Itens">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Nome</th>
+                    <th>Texto</th>
+                    <th>Última Alteração</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in itens">
+                    <td>icone</td>
+                    <td>{{item.name.pt_BR | limitTo:20}}...</td>
+                    <td>{{item.text.pt_BR | limitTo:40}}...</td>
+                    <td>data/hora</td>
+                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                </tr>
+            </table>
+        </div>
+    </uib-tab>
+    <uib-tab index="3" heading="Criaturas">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Nome</th>
+                    <th>Level</th>
+                    <th>Última Alteração</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="creature in creatures">
+                    <td>icone</td>
+                    <td>{{creature.name.pt_BR | limitTo:20}}...</td>
+                    <td>{{creature.level}}</td>
+                    <td>data/hora</td>
+                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                </tr>
+            </table>
+        </div>
+    </uib-tab>
+</uib-tabset>
