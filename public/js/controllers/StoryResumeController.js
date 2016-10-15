@@ -34,7 +34,6 @@ angular.module('realm')
 
         function edit(resume){
             $location.path('/myStories/' + resume.story_id + '/edit');
-            $event.stopPropagation();
         }
 
         $scope.init();
