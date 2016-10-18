@@ -1,5 +1,5 @@
 angular.module('realm')
-    .controller('StoryController', ['$scope', '$q', '$routeParams', '$location', 'StoryService', 'ToastService', function($scope, $q, $routeParams, $location, StoryService, ToastService) {
+    .controller('StoryController', ['$scope', '$q', '$routeParams', '$location', 'StoryService', 'ToastService', 'StorageService', function($scope, $q, $routeParams, $location, StoryService, ToastService, StorageService) {
 
         var id = $routeParams.id;
 
@@ -8,6 +8,11 @@ angular.module('realm')
         $scope.save = save;
         $scope.init = init;
 
+        //TODO: Utilizar StorageService através da StoryService ("encapsular")?
+
+        //TODO: Encontrar melhor lugar para fazer a "limpeza" da história corrente na storage
+
+        //TODO: Trocar $scope.story por StorageService.getCurrentStory()??
         function save() {
             var promise = StoryService.save($scope.story);
 
@@ -29,6 +34,7 @@ angular.module('realm')
             var promise = StoryService.find(filters);
         
             $q.when(promise)
+                .then(setCurrentStoryOnStorage)
                 .then(edit)
                 .catch(function(error){
                     var message = { type: 'danger', msg: error.data.message };
@@ -40,20 +46,25 @@ angular.module('realm')
                 });    
         }
 
+        //TODO: Colocar a definição de história corrente para dentro da StoryService?
+        function setCurrentStoryOnStorage(story){
+            StorageService.setCurrentStory(story);
+        }
+
         function edit(id){
             $q.when(StoryService.edit(id))
                 .then(fill)
                 .catch(console.log);
         }
 
+        //TODO: Encontrar nome melhor para o método
         function fill(projection){
             $scope.projection = projection;
         }
 
         function init(){
             if(!!id){
-                //find({'id': id});
-                edit(id);
+                find({'id': id});
             }
         }
 
