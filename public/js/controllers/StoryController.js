@@ -14,6 +14,7 @@ angular.module('realm')
         $scope.storyList = [];
 
         $scope.save = save;
+        $scope.detail = detail;
         $scope.init = init;
         $scope.findStoriesForList = findStoriesForList;
 
@@ -68,6 +69,18 @@ angular.module('realm')
             $q.when(StoryForListService.findStoriesForList())
                 .then(setStoryList);
         }
+
+        function detail(story) {
+            $uibModal.open({
+                templateUrl: 'js/directives/components/modal/modal-historia.template.html',
+                controller: function($scope, storyDetail) {
+                                $scope.storyDetail = storyDetail;
+                            },
+                resolve: {
+                    storyDetail: story
+                }
+            });
+        };
 
         function edit(id){
             $q.when(StoryService.edit(id))
