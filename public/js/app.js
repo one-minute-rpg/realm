@@ -1,10 +1,12 @@
 angular.module('realm', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngSanitize'])
     .config(function($routeProvider, $httpProvider) {
 
+        var StoryController = 'StoryController';
+
         $routeProvider
             .when('/myStories', {
                 templateUrl: 'partials/story-list.html',
-                controller: 'StoryResumeController'
+                controller: StoryController
             })
             .when('/myStories/add', {
                 templateUrl: 'partials/story-register.html',
