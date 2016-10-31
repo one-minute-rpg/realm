@@ -7,11 +7,13 @@ angular.module('realm')
             scope.alerts = [];
 
             scope.$on(ToastMessageType.SUCCESS, function(event, data){
-                scope.alerts.push(data);
+                var alert = { type: 'success', msg: data };
+                scope.alerts.push(alert);
             });
 
             scope.$on(ToastMessageType.ERROR, function(event, data){
-                scope.alerts.push(data);
+                var alert = { type: 'danger', msg: data };
+                scope.alerts.push(alert);
             });
 
             function close(){
