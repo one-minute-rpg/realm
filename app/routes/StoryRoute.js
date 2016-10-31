@@ -7,4 +7,7 @@ module.exports = function(app) {
     app.route('/myStories/:id')
         .get(controller.find)
         .delete(controller.delete);
+
+    app.route('/myStories')
+        .get(controller.find);
 }

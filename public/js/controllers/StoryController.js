@@ -15,6 +15,7 @@ angular.module('realm')
 
         $scope.save = save;
         $scope.init = init;
+        $scope.findStoriesForList = findStoriesForList;
 
         //TODO: Utilizar StorageService através da StoryService ("encapsular")?
 
@@ -63,9 +64,9 @@ angular.module('realm')
                 });    
         }
 
-        //TODO: Colocar a definição de história corrente para dentro da StoryService?
-        function setCurrentStoryOnStorage(story){
-            StorageService.setCurrentStory(story);
+        function findStoriesForList(){
+            $q.when(StoryForListService.findStoriesForList())
+                .then(setStoryList);
         }
 
         function edit(id){
@@ -74,14 +75,27 @@ angular.module('realm')
                 .catch(console.log);
         }
 
+/*-----------------------UTILS----------------------------*/
+
         //TODO: Encontrar nome melhor para o método
         function fill(projection){
             $scope.projection = projection;
         }
 
+        function setStoryList(data){
+            $scope.storyList = data;
+        }
+
+        //TODO: Colocar a definição de história corrente para dentro da StoryService?
+        function setCurrentStoryOnStorage(story){
+            StorageService.setCurrentStory(story);
+        }
+
         function init(){
             if(!!id){
                 find({'id': id});
+            }else{
+                findStoriesForList();
             }
         }
 
