@@ -50,7 +50,6 @@ module.exports = function(app) {
         } else {
             Story.create(story)
                 .then(function(story) {
-                    StoryResume.create(createResume(story));
                     res.status(201).json(story);
                 })
                 .catch(function(error) {
@@ -74,19 +73,6 @@ module.exports = function(app) {
                     return console.error(error);
                 }
             );
-    };
-
-    function createResume(story) {
-
-        var resume = {};
-
-        resume.title = { pt_BR: story.title.pt_BR };
-        resume.description = story.description;
-        resume.cover = story.cover;
-        resume.story_id = story._id;
-        resume.scenesCount = story.scenes.length;
-
-        return resume;
     };
 
     return controller;

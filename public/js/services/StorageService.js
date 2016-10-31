@@ -4,11 +4,20 @@ angular.module('realm')
 
         var currentStory = {};
 
+        service.insert = insert;
+
         service.setCurrentStory = setCurrentStory;
         service.getCurrentStory = getCurrentStory;
 
+        service.getCurrentStoryScenes = getCurrentStoryScenes;
+
+        function insert(story){
+            debugger;
+            return $http.post('/myStories/add', story);
+        }
+
         function setCurrentStory(story){
-            
+
             //TODO: Remover história mockada
             currentStory = sstory;
         }
@@ -17,15 +26,23 @@ angular.module('realm')
             return currentStory;
         }
 
+        function getCurrentStoryScenes(){
+            return currentStory.scenes;
+        }
+
         //TODO: Remover historia mockada
 
         var sstory = 
 {
-    "_id": 1,
     "title": {
         "pt_BR": "É Verão o ano Todo",
         "en_US": "Summer All Year"
     },
+    "description": {
+        "pt_BR": "É Verão o ano Todo askjdbaksdbas  askjdbaksdbas  askjdbaksdbas  askjdbaksdbas  askjdbaksdbas  askjdbaksdbas ",
+        "en_US": "Summer All Year mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr  mthrfkr "
+    },
+    "cover": "http://www.rpgnoticias.com.br/wp-content/uploads/2013/10/cronicas-rpg-capa.png",
     "character": {
         "character_id": 1,
         "itens": [

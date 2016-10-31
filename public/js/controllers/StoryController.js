@@ -1,9 +1,17 @@
 angular.module('realm')
-    .controller('StoryController', ['$scope', '$q', '$routeParams', '$location', 'StoryService', 'ToastService', 'StorageService', function($scope, $q, $routeParams, $location, StoryService, ToastService, StorageService) {
+    .controller('StoryController', ['$scope', '$q', '$routeParams', '$location', '$uibModal', 'StoryMaintenanceService', 'ToastService', 'StorageService', 'StoryForListService', function($scope, $q, $routeParams, $location, $uibModal, StoryMaintenanceService, ToastService, StorageService, StoryForListService) {
 
         var id = $routeParams.id;
 
-        $scope.story = {};
+        $scope.story = {
+            title: {},
+            description: {},
+            cover: '',
+            itens: [],
+            scenes: []
+        };
+
+        $scope.storyList = [];
 
         $scope.save = save;
         $scope.init = init;
@@ -14,6 +22,14 @@ angular.module('realm')
 
         //TODO: Trocar $scope.story por StorageService.getCurrentStory()??
         function save() {
+            var story = $scope.story;
+
+            if(!!story._id){
+
+            }else{
+                StoryMaintenanceService.insert(story);
+            }
+        /*
             var promise = StoryService.save($scope.story);
 
             $q.when(promise)
@@ -24,6 +40,7 @@ angular.module('realm')
                 .catch(function(error) {
                     console.log(error);
                 });
+        */
         };
 
         function clear() {

@@ -12,7 +12,12 @@ module.exports = function() {
             }
         },
         description: {
-            type: String
+            pt_BR: {
+                type: String
+            },
+            en_US: {
+                type: String
+            }
         },
         cover: {
             type: String

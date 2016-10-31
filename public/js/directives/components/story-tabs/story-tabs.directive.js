@@ -5,8 +5,7 @@ angular.module('realm')
             templateUrl: 'js/directives/components/story-tabs/story-tabs.template.html',
             scope: {
                 scenes: '=',
-                itens: '=',
-                creatures: '='
+                itens: '='
             }
         };
     });
