@@ -38,10 +38,10 @@ module.exports = function(app) {
     controller.save = function(req, res) {
         var story = req.body;
 
-        if (story.id) {
-            Story.findByIdAndUpdate(story.id, story).exec()
+        if (!!story._id) {
+            Story.findByIdAndUpdate(story._id, story).exec()
                 .then(function(story) {
-                    res.json(contato);
+                    res.json(story);
                 })
                 .catch(function(error) {
                     //TODO: Implementar log? Tratar erro

@@ -12,8 +12,6 @@ angular.module('realm')
         }
 
         function createStoryListProjection(stories){
-            debugger;
-            
             var projections = [];
 
             angular.forEach(stories, function(story, key) {

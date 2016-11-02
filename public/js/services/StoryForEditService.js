@@ -1,17 +1,48 @@
 angular.module('realm')
-    .factory('StoryForEditService',['$q', 'StorageService', function($q, StorageService) {
+    .factory('StoryForEditService',['$q', '$http', 'ToastService', 'StorageService', function($q, $http, ToastService, StorageService) {
         var service = {};
 
         service.edit = edit;
+        service.update = update;
+        service.findById = findById;
 
         function edit(id){
             var currentStory = StorageService.getCurrentStory();
-            return $q.when(createStoryProjection(currentStory));
+
+            if(!!currentStory && currentStory._id == id){
+                return $q.when(createStoryProjection(currentStory));
+            }else{
+                return $q.when(findById(id))
+                            .then(function(){
+                                return createStoryProjection(StorageService.getCurrentStory());
+                            });
+            }
+            
+        }
+
+        function findById(id){
+            return $http.get('/myStories/' + id)
+                    .then(function(response){
+                        StorageService.setCurrentStory(response.data[0]);
+                        return;
+                    });
+        }
+
+        function update(story){
+            $q.when(StorageService.update(story))
+                .then(alertSuccessfullyUpdatedStory)
+                .catch(alertErrorOnUpdateStory);
+        }
+
+        function alertSuccessfullyUpdatedStory(){
+            ToastService.success('História salva com sucesso.');
+        }
+
+        function alertErrorOnUpdateStory(){
+            ToastService.error('Houve um erro ao salvar a história.');
         }
 
         function createStoryProjection(story){
-            debugger;
-
             var projection = {
                 _id: '',
                 title: {},
@@ -29,12 +60,10 @@ angular.module('realm')
 
             projection.scenes = createScenesProjection(story.scenes);
             projection.itens = createItensProjection(story.itens);
-            projection.creatures = createCreaturesProjection(story.creatures);
 
             return projection;
         }
 
-        //TODO: Separar a criação da projeção de cenas em uma service diferente
         function createScenesProjection(scenes){
             var projections = [];
 
@@ -57,7 +86,6 @@ angular.module('realm')
             return projections;
         }
 
-        //TODO: Separar a criação da projeção de itens em uma service diferente
         function createItensProjection(itens){
             var projections = [];
 
@@ -73,27 +101,6 @@ angular.module('realm')
                 projection.type = item.type;
                 projection.name = fillLanguages(item.name);
                 projection.text = fillLanguages(item.text);
-
-                projections.push(projection);
-            });
-
-            return projections;
-        }
-
-        //TODO: Separar a criação da projeção de criaturas em uma service diferente
-        function createCreaturesProjection(creatures){
-            var projections = [];
-
-            angular.forEach(creatures, function(creature, key){
-                var projection = {
-                    creature_id: '',
-                    name: {},
-                    level: ''
-                };
-
-                projection.creature_id = creature.creature_id;
-                projection.name = fillLanguages(creature.name);
-                projection.level = creature.level;
 
                 projections.push(projection);
             });

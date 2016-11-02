@@ -5,6 +5,7 @@ angular.module('realm')
         var currentStory = {};
 
         service.insert = insert;
+        service.update = update;
 
         service.setCurrentStory = setCurrentStory;
         service.getCurrentStory = getCurrentStory;
@@ -12,14 +13,27 @@ angular.module('realm')
         service.getCurrentStoryScenes = getCurrentStoryScenes;
 
         function insert(story){
-            debugger;
-            return $http.post('/myStories/add', story);
+            return $http.post('/myStories/add', story)
+                .then(function(response){
+                    setCurrentStory(response.data);
+                    return response;
+                });
+        }
+
+        function update(story){
+            return $http.put('/myStories/update', story)
+                    .then(function(response){
+                        setCurrentStory(response.data);
+                    })
+                    .catch(function(error){
+                        debugger;
+                        console.log(error);
+                        alert('Oorreu um erro em StorageService.update');
+                    });
         }
 
         function setCurrentStory(story){
-
-            //TODO: Remover história mockada
-            currentStory = sstory;
+            currentStory = story;
         }
 
         function getCurrentStory(){
@@ -30,9 +44,8 @@ angular.module('realm')
             return currentStory.scenes;
         }
 
-        //TODO: Remover historia mockada
-
-        var sstory = 
+//TODO: Remover historia mockada
+var sstory = 
 {
     "title": {
         "pt_BR": "É Verão o ano Todo",

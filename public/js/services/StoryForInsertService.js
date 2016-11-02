@@ -1,5 +1,5 @@
 angular.module('realm')
-    .factory('StoryMaintenanceService', ['$q', '$location', 'StorageService', 'ToastService', function($q, $location, StorageService, Toast) {
+    .factory('StoryForInsertService', ['$q', '$location', 'StorageService', 'ToastService', function($q, $location, StorageService, Toast) {
         var service = {};
 
         service.insert = insert;
@@ -10,9 +10,6 @@ angular.module('realm')
                     .then(savedSuccessfully)
                     .then(redirectToEdit);
             }
-                //Chamar método salvar da StorageService
-
-            //return $http.post('/myStories/add', story);
         };
 
         function savedSuccessfully(response){
@@ -23,10 +20,6 @@ angular.module('realm')
         function redirectToEdit(response){
             debugger;
             $location.path('/myStories/' + response.data._id + '/edit');
-        }
-
-        function update(story){
-
         }
 
         function validate(story){
