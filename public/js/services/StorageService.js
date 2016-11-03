@@ -23,7 +23,7 @@ angular.module('realm')
         function update(story){
             return $http.put('/myStories/update', story)
                     .then(function(response){
-                        setCurrentStory(response.data);
+                        setCurrentStory(story);
                     })
                     .catch(function(error){
                         debugger;

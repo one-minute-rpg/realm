@@ -13,6 +13,7 @@ angular.module('realm')
 
         $scope.save = save;
         $scope.detail = detail;
+        $scope.edit = edit;
         $scope.init = init;
 
         //TODO: Encontrar melhor lugar para fazer a "limpeza" da história corrente na storage
@@ -22,11 +23,24 @@ angular.module('realm')
                 StoryForEditService.update($scope.story);
             }else{
                 StoryForInsertService.insert($scope.story);
+                redirectToEdit($scope.story._id);
             }
         };
 
-        function clear() {
-            $scope.story = {};
+        function detail(story) {
+            $uibModal.open({
+                templateUrl: 'js/directives/components/modal/modal-historia.template.html',
+                controller: function($scope, storyDetail) {
+                                $scope.storyDetail = storyDetail;
+                            },
+                resolve: {
+                    storyDetail: story
+                }
+            });
+        };
+
+        function edit(story){
+            redirectToEdit(story._id);
         }
 
         function findStoryForEdit(id){
@@ -43,17 +57,9 @@ angular.module('realm')
                 .then(setStoryList);
         }
 
-        function detail(story) {
-            $uibModal.open({
-                templateUrl: 'js/directives/components/modal/modal-historia.template.html',
-                controller: function($scope, storyDetail) {
-                                $scope.storyDetail = storyDetail;
-                            },
-                resolve: {
-                    storyDetail: story
-                }
-            });
-        };
+        function redirectToEdit(id){
+            $location.path('/myStories/' + id + '/edit');
+        }
 
 /*-----------------------UTILS----------------------------*/
 
@@ -64,6 +70,10 @@ angular.module('realm')
 
         function setStoryList(data){
             $scope.storyList = data;
+        }
+
+        function clear() {
+            $scope.story = {};
         }
 
         function init(){

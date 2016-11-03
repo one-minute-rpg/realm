@@ -40,8 +40,8 @@ module.exports = function(app) {
 
         if (!!story._id) {
             Story.findByIdAndUpdate(story._id, story).exec()
-                .then(function(story) {
-                    res.json(story);
+                .then(function(response) {
+                    res.status(200).json(response);
                 })
                 .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
