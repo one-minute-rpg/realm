@@ -7,19 +7,13 @@ angular.module('realm')
         function insert(story) {
             if(validate(story)){
                 $q.when(StorageService.insert(story))
-                    .then(savedSuccessfully)
-                    .then(redirectToEdit);
+                    .then(savedSuccessfully);
             }
         };
 
         function savedSuccessfully(response){
             Toast.success('História salva.');
             return response;
-        }
-
-        function redirectToEdit(response){
-            debugger;
-            $location.path('/myStories/' + response.data._id + '/edit');
         }
 
         function validate(story){
