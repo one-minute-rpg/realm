@@ -10,7 +10,6 @@ angular.module('realm')
                 $scope.optionsTemplate = 'js/directives/components/popover-menu/popover-menu-options.template.html';
 
                 $scope.newQuestItem = function(){
-                    debugger;
                     $state.go('newQuestItem', { story_id: $stateParams.story_id });
                 };
 

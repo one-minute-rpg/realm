@@ -13,7 +13,6 @@ angular.module('realm')
 
         function convertToEventList(events){
             var eventList = events.map(function(evt){
-                debugger;
                 return {
                     event_id: evt.id,
                     text: createText(evt)

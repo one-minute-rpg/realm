@@ -11,7 +11,6 @@ function StoryForInsertService($q, StorageService, ToastService){
 
     function insert(story) {
         if(validate(story)){
-            debugger;
             return $q.when(StorageService.insert(story))
                 .then(savedSuccessfully)
                 .catch(errorOnCreate);
@@ -19,7 +18,6 @@ function StoryForInsertService($q, StorageService, ToastService){
     };
 
     function savedSuccessfully(data){
-        debugger;
         ToastService.success('História salva.');
         return data;
     };
