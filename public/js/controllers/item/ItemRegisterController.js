@@ -11,6 +11,7 @@ function ItemRegisterController($scope, $q, $state, ItemForInsertService, type, 
     $scope.showEvents = type == ItemType.INVENTORY;
 
     $scope.save = save;
+    $scope.back = back;
 
     function save(){
         if(!$scope.item.id){
