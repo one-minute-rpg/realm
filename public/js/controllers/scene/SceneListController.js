@@ -26,4 +26,6 @@ function SceneListController($scope) {
     function refreshList(){
         $scope.scenesForList = filterScenesForList();
     };
+
+    refreshList();
 };

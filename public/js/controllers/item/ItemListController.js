@@ -9,7 +9,6 @@ function ItemListController($scope) {
     $scope.itemsPerPage = 5;
     $scope.totalItems = !!$scope.items ? $scope.items.length : 1;
     
-
     $scope.setPage = setPage;
 
     function setPage(pageNo){
@@ -20,6 +19,7 @@ function ItemListController($scope) {
     function filterItemsForList(){
         var startIndex = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var endIndex = ($scope.itemsPerPage * $scope.currentPage);
+
         return $scope.items.slice(startIndex, endIndex);
     };
 
