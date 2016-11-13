@@ -5,6 +5,7 @@
             <th>Nome</th>
             <th>Texto</th>
             <th></th>
+            <th></th>
         </tr>
         <tr ng-repeat="item in itemsForList">
             <td>
@@ -13,7 +14,8 @@
             </td>
             <td>{{item.name.pt_br | limitTo:20}}...</td>
             <td>{{item.description.pt_br | limitTo:40}}...</td>
-            <td><span class="glyphicon glyphicon-trash pull-right"></span></td>
+            <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="edit(item._id)"></span></td>
+            <td><span class="glyphicon glyphicon-trash pull-right clickable"></span></td>
         </tr>
         <tr>
             <pagination item-count="totalItems" items-per-page="itemsPerPage" current-page="currentPage" on-page-change="setPage"></pagination>

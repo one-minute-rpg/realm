@@ -48,3 +48,7 @@ body {
     padding-bottom: 30px;
     height: 100%;
 }
+
+.clickable{
+    cursor: pointer
+}
