@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
             title:{
-                pt_BR: {
+                pt_br: {
                     type: String,
                     required: true
                 },
-                en_US: {
+                en_us: {
                     type: String
                 }
             },

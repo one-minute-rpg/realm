@@ -30,7 +30,7 @@ module.exports = function(app) {
                 })
                 .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
-                    return console.error(error);
+                    console.error(error);
                 });
         }
     };
@@ -41,11 +41,11 @@ module.exports = function(app) {
         if (!!story._id) {
             Story.findByIdAndUpdate(story._id, story).exec()
                 .then(function(response) {
-                    res.status(200).json(response);
+                    res.status(204).end();
                 })
                 .catch(function(error) {
                     //TODO: Implementar log? Tratar erro
-                    return console.error(error);
+                    console.error(error);
                 });
         } else {
             Story.create(story)

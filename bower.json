@@ -22,7 +22,9 @@
     "angular-resource": "~1.5.8",
     "angular-bootstrap": "~2.1.4",
     "angular-animate": "~1.5.8",
-    "angular-sanitize": "^1.5.8"
+    "angular-sanitize": "^1.5.8",
+    "chance": "~1.0.4",
+    "angular-ui-router": "~0.3.2"
   },
   "resolutions": {
     "angular": "1.5.8"

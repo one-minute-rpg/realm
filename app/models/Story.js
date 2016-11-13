@@ -3,29 +3,26 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
         title: {
-            pt_BR: {
+            pt_br: {
                 type: String,
                 required: true
             },
-            en_US: {
+            en_us: {
                 type: String
             }
         },
         description: {
-            pt_BR: {
+            pt_br: {
                 type: String
             },
-            en_US: {
+            en_us: {
                 type: String
             }
         },
         cover: {
             type: String
         },
-        character: {
-            itens: {
-                type: [mongoose.Schema.ObjectID] //Array com ids de itens
-            },
+        hero: {
             attributes: {
                 health: {
                     current: {
@@ -59,30 +56,52 @@ module.exports = function() {
                         type: Number
                     }
                 }
-            }
+            },
+            items: [
+                {
+                    item_id: {
+                        type: String
+                    },
+                    quantity:{
+                        type: Number
+                    }
+                }
+            ]
         },
-        itens: [{
+        items: [{
             item_id: {
-                type: Number
+                type: String
             },
             type: {
                 type: String
             },
             name: {
-                type: String
+                pt_br: {
+                    type: String,
+                    required: true
+                },
+                en_us: {
+                    type: String
+                }
             },
-            text: {
-                type: String
+            description: {
+                pt_br: {
+                    type: String,
+                    required: true
+                },
+                en_us: {
+                    type: String
+                }
             },
             events: [{
                 event_type: {
                     type: String
                 },
                 text: {
-                    pt_BR: {
+                    pt_br: {
                         type: String
                     },
-                    en_US: {
+                    en_us: {
                         type: String
                     }
                 },
@@ -99,28 +118,6 @@ module.exports = function() {
                     type: Number //Numer oque afetará a quantidade do item
                 }
             }]
-        }],
-        creatures: [{
-            name: {
-                type: String
-            },
-            level: {
-                type: Number
-            },
-            attributes: {
-                health: {
-                    type: Number
-                },
-                strength: {
-                    type: Number
-                },
-                agility: {
-                    type: Number
-                },
-                intelligence: {
-                    type: Number
-                }
-            }
         }],
         scenes: [{
             type: {
@@ -158,10 +155,10 @@ module.exports = function() {
                         type: String
                     },
                     text: {
-                        pt_BR: {
+                        pt_br: {
                             type: String
                         },
-                        en_US: {
+                        en_us: {
                             type: String
                         }
                     },
@@ -181,16 +178,7 @@ module.exports = function() {
                         type: mongoose.Schema.ObjectId //Id da cena a ser encaminhado
                     }
                 }]
-            }],
-            challenge: {
-                type: mongoose.Schema.ObjectId //Id da criatura do desafio
-            },
-            on_win: {
-                type: mongoose.Schema.ObjectId //Id da cena a ser encaminhado após vencer o desafio
-            },
-            on_lose: {
-                type: mongoose.Schema.ObjectId //Id da cena de game over
-            }
+            }]
         }]
     });
 

@@ -1,7 +1,13 @@
 <ul uib-pagination 
-    total-items="200"
-    items-per-page="50"
     ng-model="currentPage"
-    next-text="{{nextText}}"
-    previous-text="{{previousText}}">
+    total-items="itemCount"
+    class="pagination-sm" 
+    boundary-links="true" 
+    rotate="false"
+    items-per-page = "itemsPerPage"
+    ng-change="onChange()"
+    first-text="Primeira"
+    last-text="Última"
+    next-text="Próxima"
+    previous-text="Anterior">
 </ul>

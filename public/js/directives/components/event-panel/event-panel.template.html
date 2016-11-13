@@ -1,0 +1,11 @@
+<button class="btn btn-default">+ Evento</button>
+<div class="event-list">
+    <div class="table-responsive">
+        <table class="table">
+            <tr ng-repeat="event in eventList">
+                <td>{{ event.text }}</td>
+                <td><span class="glyphicon glyphicon-trash pull-right"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>

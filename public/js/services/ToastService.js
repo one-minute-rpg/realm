@@ -1,17 +1,21 @@
 angular.module('realm')
-    .factory('ToastService', ['$rootScope', 'ToastMessageType', function($rootScope, ToastMessageType){
-        var service = {};
+    .factory('ToastService', ToastService);
 
-        service.success = success;
-        service.error = error;
+ToastService.$inject = ['$rootScope', 'ToastMessageType'];
 
-        function success(message){
-            $rootScope.$broadcast(ToastMessageType.SUCCESS, message);
-        }
+function ToastService($rootScope, ToastMessageType){
+    var service = {};
 
-        function error(message){
-            $rootScope.$broadcast(ToastMessageType.ERROR, message);
-        }
+    service.success = success;
+    service.error = error;
 
-        return service;
-    }]);
+    function success(message){
+        $rootScope.$broadcast(ToastMessageType.SUCCESS, message);
+    }
+
+    function error(message){
+        $rootScope.$broadcast(ToastMessageType.ERROR, message);
+    }
+
+    return service;
+};

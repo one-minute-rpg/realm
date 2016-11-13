@@ -1,0 +1,7 @@
+.event-list{
+    width: 75%;
+    height: 500px;
+    border: solid 1px #000000;
+    overflow-y: auto;
+    margin-top: 10px;
+}
