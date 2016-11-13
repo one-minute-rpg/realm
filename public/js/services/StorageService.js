@@ -1,9 +1,9 @@
 angular.module('realm')
     .factory('StorageService', StorageService);
     
-StorageService.$inject = ['$http', '$rootScope', 'StorageAlerts'];
+StorageService.$inject = ['$http'];
 
-function StorageService($http, $rootScope, StorageAlerts){
+function StorageService($http){
     var service = {};
 
     var currentStory = {};
@@ -60,9 +60,7 @@ function StorageService($http, $rootScope, StorageAlerts){
         return currentStory.items;
     }
 
-    function alertUpdatedCurrentStory(){
-        $rootScope.$broadcast(StorageAlerts.UPDATED_CURRENT_STORY);
-    }
+    };
 
     return service;
 };
