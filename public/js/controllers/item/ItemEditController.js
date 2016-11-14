@@ -26,6 +26,7 @@ function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, I
         });
 
         $scope.item = story.items[index];
+        $scope.showEvents = $scope.item.type == ItemType.INVENTORY;
     };
 
     init();
