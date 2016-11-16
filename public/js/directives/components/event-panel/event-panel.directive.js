@@ -4,8 +4,10 @@ angular.module('realm')
             restrict: 'E',
             templateUrl: 'js/directives/components/event-panel/event-panel.template.html',
             scope: {
-                events: '='
+                events: '=',
+                context: '='
             },
+            controller: 'EventPanelController',
             link: function($scope, elem, attrs){ 
                 $scope.eventList = convertToEventList($scope.events);
             }
@@ -54,4 +56,132 @@ angular.module('realm')
             return text;
         };
 
+    }])
+    .controller('EventPanelController', ['$scope', '$uibModal', 'EventType', 'Attributes', function($scope, $uibModal, EventType, Attributes){
+
+        $scope.addEvent = addEvent;
+
+        function addEvent(){
+            $scope.eventTypeOptions = convertEventTypeToOption();
+            $scope.attributes = convertAttributesToOption();
+
+            var modal = $uibModal.open({
+                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html',
+                controller: 'ModalEventPanelController',
+                resolve:{
+                    options: function(){ return $scope.eventTypeOptions; },
+                    attributes: function(){ return $scope.attributes }
+                },
+                size: 'sm'
+            });
+
+            modal.result.then(function(event){
+                debugger;
+                event;
+            });
+        };
+
+        function convertEventTypeToOption(){
+            var options = [];
+
+            switch($scope.context){
+                case 'Item': options = eventsAvailableForInventoryItem();
+                break;
+            };
+
+            return options;
+        };
+
+        function convertAttributesToOption(){
+            var options = [];
+
+            options.push({ type: Attributes.HEALTH, text: 'Vida' });
+            options.push({ type: Attributes.STRENGTH, text: 'Força' });
+            options.push({ type: Attributes.AGILITY, text: 'Agilidade' });
+            options.push({ type: Attributes.INTELLIGENCE, text: 'Inteligência' });
+
+            return options;
+        };
+
+        function eventsAvailableForInventoryItem(){
+            var types = [];
+
+            types.push({ type_id: null, text: 'Selecione um' });
+            types.push({ type_id: EventType.GO_TO_SCENE, text: 'Ir para Cena' });
+            types.push({ type_id: EventType.CHANGE_ATTRIBUTE, text: 'Alterar Atributo' });
+            types.push({ type_id: EventType.ADD_ITEM, text: 'Adicionar Item' });
+            types.push({ type_id: EventType.GAME_OVER, text: 'Game Over' });
+        
+            return types;
+        };
+    }])
+    .controller('ModalEventPanelController', ['$scope', 'EventType', '$uibModal', '$uibModalInstance', 'options', 'attributes', function($scope, EventType, $uibModal, $uibModalInstance, options, attributes){
+        $scope.options = options;
+        $scope.attributes = attributes;
+        $scope.eventType = null;
+
+        $scope.searchScene = searchScene;
+        $scope.searchItem = searchItem;
+        $scope.refresh = refresh;
+
+        $scope.cancel = cancel;
+        $scope.createEvent = createEvent;
+
+        function refresh(){ 
+            $scope.isChangeAttribute = $scope.eventType == EventType.CHANGE_ATTRIBUTE;
+            $scope.isGoToScene = $scope.eventType == EventType.GO_TO_SCENE;
+            $scope.isAddItem = $scope.eventType == EventType.ADD_ITEM;
+            $scope.isGameOver = $scope.eventType == EventType.GAME_OVER;
+        };
+
+        function searchScene(){
+            $uibModal.open({
+                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html'
+            });
+        };
+
+        function searchItem(){
+            $uibModal.open({
+                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html'
+            });
+        };
+
+        function createEvent(){
+            var event = {};
+
+            switch($scope.eventType){
+                case EventType.CHANGE_ATTRIBUTE: event = createChangeAttributeEvent();
+                break;
+
+                case EventType.GO_TO_SCENE: event = createGoToSceneEvent();
+                break;
+
+                case EventType.ADD_ITEM: event = createAddItemEvent();
+                break;
+
+                case EventType.GAME_OVER: event = createGameOverEvent();
+                break;
+            };
+
+             $uibModalInstance.close(event);
+        };
+
+        function cancel(){
+            $uibModalInstance.close();
+        };
+
+        function createChangeAttributeEvent(){
+            var event = {};
+
+            event.type = $scope.eventType;
+            event.attribute = $scope.attribute;
+            event.value = $scope.value;
+            event.text = { pt_br: $scope.attrChangeText };
+
+            return event;
+        };
+
+        function createGameOverEvent(){
+            return { type: EventType.GAME_OVER, text: { pt_br: $scope.gameover } };
+        };
     }]);
