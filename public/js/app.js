@@ -1,4 +1,4 @@
-angular.module('realm', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngSanitize'])
+angular.module('realm', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize'])
     .config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/myStories');

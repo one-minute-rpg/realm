@@ -120,10 +120,13 @@ angular.module('realm')
         $scope.attributes = attributes;
         $scope.eventType = null;
 
-        $scope.searchScene = searchScene;
-        $scope.searchItem = searchItem;
-        $scope.refresh = refresh;
+        $scope.scenesAvailable = [];
+        $scope.selectedScene = {};
 
+        $scope.itemsAvailable = [];
+        $scope.selectedItem = {};
+
+        $scope.refresh = refresh;
         $scope.cancel = cancel;
         $scope.createEvent = createEvent;
 
@@ -132,18 +135,6 @@ angular.module('realm')
             $scope.isGoToScene = $scope.eventType == EventType.GO_TO_SCENE;
             $scope.isAddItem = $scope.eventType == EventType.ADD_ITEM;
             $scope.isGameOver = $scope.eventType == EventType.GAME_OVER;
-        };
-
-        function searchScene(){
-            $uibModal.open({
-                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html'
-            });
-        };
-
-        function searchItem(){
-            $uibModal.open({
-                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html'
-            });
         };
 
         function createEvent(){
@@ -182,6 +173,26 @@ angular.module('realm')
         };
 
         function createGameOverEvent(){
-            return { type: EventType.GAME_OVER, text: { pt_br: $scope.gameover } };
+            return { 
+                type: EventType.GAME_OVER, 
+                text: { pt_br: $scope.gameover } 
+            };
+        };
+
+        function createGoToSceneEvent(){
+            debugger;
+            return { 
+                type: $scope.eventType, 
+                scene_id: $scope.selectedScene.scene_id 
+            };
+        };
+
+        function createAddItemEvent(){
+            debugger;
+            return { 
+                type: $scope.eventType, 
+                item_id: $scope.selectedItem.item_id, 
+                quantity: $scope.quantity 
+            };
         };
     }]);

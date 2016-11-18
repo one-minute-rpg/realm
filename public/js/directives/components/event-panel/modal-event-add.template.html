@@ -22,13 +22,25 @@
             </div>
             <div class="form-group" ng-show="isGoToScene">
                 <label for="scene">Cena</label>
-                <input type="text" id="scene" class="form-control" ng-model="sceneToGo" ng-disabled="true" />
-                <button class="btn btn-sm btn-default" ng-click="searchScene()">Pesquisar</button>
+                <ui-select id="scene" ng-model="selectedScene">
+                    <ui-select-match>
+                        <span ng-bind="selectedScene.title.pt_br"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="scene in (availableScenes | filter: $select.search) track by scene.scene_id">
+                        <span ng-bind="scene.title.pt_br"></span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
             <div class="form-group" ng-show="isAddItem">
                 <label for="item">Item</label>
-                <input type="text" id="item" class="form-control" ng-model="itemToAdd" ng-disabled="true" />
-                <button class="btn btn-sm btn-default" ng-click="searchItem()">Pesquisar</button>
+                <ui-select id="item" ng-model="selectedItem">
+                    <ui-select-match>
+                        <span ng-bind="selectedItem.name.pt_br"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in (availableItems | filter: $select.search) track by item._id">
+                        <span ng-bind="item.name.pt_br"></span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
             <div class="form-group" ng-show="isGameOver">
                 <label for="gameover">Mensagem</label>
@@ -44,7 +56,7 @@
             </div>
             <div class="form-group" ng-show="isAddItem">
                 <label for="quantity">Quantidade</label>
-                <input type="number" id="quantity" class="form-control" min="1" />
+                <input type="number" id="quantity" ng-model="quantity" class="form-control" min="1" />
             </div>
         </div>
     </div>
