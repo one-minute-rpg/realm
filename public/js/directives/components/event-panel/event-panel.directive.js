@@ -5,18 +5,88 @@ angular.module('realm')
             templateUrl: 'js/directives/components/event-panel/event-panel.template.html',
             scope: {
                 events: '=',
-                context: '='
+                context: '=',
+                availableScenes: '=',
+                availableItems: '='
             },
-            controller: 'EventPanelController',
-            link: function($scope, elem, attrs){ 
-                $scope.eventList = convertToEventList($scope.events);
-            }
+            controller: 'EventPanelController'
+        };
+
+
+    }])
+    .controller('EventPanelController', ['$scope', '$uibModal', 'EventType', 'Attributes', function($scope, $uibModal, EventType, Attributes){
+
+        $scope.addEvent = addEvent;
+        $scope.remove = remove;
+        $scope.convertToEventList = convertToEventList;
+
+        function addEvent(){
+            $scope.eventTypeOptions = convertEventTypeToOption();
+            $scope.attributes = convertAttributesToOption();
+
+            var modal = $uibModal.open({
+                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html',
+                controller: 'ModalEventPanelController',
+                resolve:{
+                    options: function(){ return $scope.eventTypeOptions; },
+                    attributes: function(){ return $scope.attributes; },
+                    availableScenes: function(){ return $scope.availableScenes; },
+                    availableItems: function(){ return $scope.availableItems; }
+                },
+                size: 'sm'
+            });
+
+            modal.result.then(function(event){
+                $scope.events.push(event);
+                $scope.eventList = $scope.convertToEventList($scope.events);
+            });
+        };
+
+        function remove(event){
+            var modal = $uibModal.open({
+                            templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
+                            controller: ['$scope', '$uibModalInstance', 'event', function($scope, $uibModalInstance, event){
+                                $scope.obj = event;
+                                $scope.text = 'o evento';
+                                $scope.confirm = function(event_id){
+                                    $uibModalInstance.close(event_id);
+                                };
+
+                                $scope.cancel = function(){
+                                    $uibModalInstance.close();
+                                };
+                            }],
+                            resolve: {
+                                event: function(){
+                                    return event;
+                                }
+                            }
+                        });
+
+            modal.result.then(function(event_id){
+                if(!!event_id){
+                    removeEvent(event_id);
+                };
+            });
+        };
+
+        function removeEvent(event_id){
+            var event = $scope.events.find(function(elem){
+                return elem.event_id == event_id;
+            });
+
+            var index = $scope.events.indexOf(event);
+
+            if(index > -1)
+                $scope.events.splice(index, 1);
+
+            init();
         };
 
         function convertToEventList(events){
             var eventList = events.map(function(evt){
                 return {
-                    event_id: evt.id,
+                    event_id: evt.event_id,
                     text: createText(evt)
                 };
             });
@@ -56,31 +126,6 @@ angular.module('realm')
             return text;
         };
 
-    }])
-    .controller('EventPanelController', ['$scope', '$uibModal', 'EventType', 'Attributes', function($scope, $uibModal, EventType, Attributes){
-
-        $scope.addEvent = addEvent;
-
-        function addEvent(){
-            $scope.eventTypeOptions = convertEventTypeToOption();
-            $scope.attributes = convertAttributesToOption();
-
-            var modal = $uibModal.open({
-                templateUrl: 'js/directives/components/event-panel/modal-event-add.template.html',
-                controller: 'ModalEventPanelController',
-                resolve:{
-                    options: function(){ return $scope.eventTypeOptions; },
-                    attributes: function(){ return $scope.attributes }
-                },
-                size: 'sm'
-            });
-
-            modal.result.then(function(event){
-                debugger;
-                event;
-            });
-        };
-
         function convertEventTypeToOption(){
             var options = [];
 
@@ -114,16 +159,22 @@ angular.module('realm')
         
             return types;
         };
+
+        function init(){
+            $scope.eventList = $scope.convertToEventList($scope.events);
+        };
+
+        init();
     }])
-    .controller('ModalEventPanelController', ['$scope', 'EventType', '$uibModal', '$uibModalInstance', 'options', 'attributes', function($scope, EventType, $uibModal, $uibModalInstance, options, attributes){
+    .controller('ModalEventPanelController', ['$scope', 'EventType', '$uibModal', '$uibModalInstance', 'options', 'attributes', 'availableScenes', 'availableItems', function($scope, EventType, $uibModal, $uibModalInstance, options, attributes, availableScenes, availableItems){
         $scope.options = options;
         $scope.attributes = attributes;
         $scope.eventType = null;
 
-        $scope.scenesAvailable = [];
+        $scope.availableScenes = availableScenes;
         $scope.selectedScene = {};
 
-        $scope.itemsAvailable = [];
+        $scope.availableItems = availableItems;
         $scope.selectedItem = {};
 
         $scope.refresh = refresh;
@@ -153,6 +204,8 @@ angular.module('realm')
                 case EventType.GAME_OVER: event = createGameOverEvent();
                 break;
             };
+
+            event.event_id = chance.guid();
 
              $uibModalInstance.close(event);
         };

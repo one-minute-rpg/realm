@@ -4,7 +4,7 @@
         <table class="table">
             <tr ng-repeat="event in eventList">
                 <td>{{ event.text }}</td>
-                <td><span class="glyphicon glyphicon-trash pull-right"></span></td>
+                <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(event.event_id)"></span></td>
             </tr>
         </table>
     </div>

@@ -16,7 +16,7 @@ function ItemForEditService($q, StorageService, ToastService){
     function savedSuccessfully(response){
         ToastService.success('História salva.');
         return response;
-    }
+    };
 
     return service;
 };

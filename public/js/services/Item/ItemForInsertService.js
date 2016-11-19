@@ -9,7 +9,7 @@ function ItemForInsertService($q, StorageService, ToastService){
     service.insert = insert;
 
     function insert(story, item, type) {
-        item.id = chance.guid();
+        item.item_id = chance.guid();
         item.type = type;
 
         if(validate(item)){

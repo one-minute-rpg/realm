@@ -6,6 +6,7 @@ ItemEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story',
 
 function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, ItemForEditService) {
 
+    $scope.story = story;
     $scope.item = {};
 
     $scope.save = save;
