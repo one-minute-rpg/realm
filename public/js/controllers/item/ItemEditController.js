@@ -23,7 +23,7 @@ function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, I
 
     function init(){
         var index = story.items.findIndex(function(item){
-            return item._id == $stateParams.item_id;
+            return item.item_id == $stateParams.item_id;
         });
 
         $scope.item = story.items[index];
