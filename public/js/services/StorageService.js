@@ -18,10 +18,6 @@ function StorageService($http){
     };
 
     function update(story){
-        if(!story){
-            story = currentStory;
-        }
-
         return $http.put('/myStories/update', story)
                 .catch(function(error){
                     console.log(error);
