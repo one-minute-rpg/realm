@@ -115,7 +115,7 @@ module.exports = function() {
                     type: Number
                 },
                 item_id: {
-                    type: mongoose.Schema.ObjectId //Id do item afetado pelo evento
+                    type: String //Id do item afetado pelo evento
                 },
                 quantity: {
                     type: Number //Numer oque afetará a quantidade do item
