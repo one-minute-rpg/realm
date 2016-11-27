@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label for="event_type">Tipo do Evento</label>
-                <select class="form-control" id="event_type" ng-model="eventType" ng-change="refresh()">
+                <select class="form-control" id="event_type" ng-model="tempEvent.type" ng-change="refresh()">
                     <option ng-repeat="option in options" value="{{option.type_id}}">{{option.text}}</option>
                 </select>
             </div>
@@ -16,13 +16,13 @@
         <div class="col-lg-12">
             <div class="form-group" ng-show="isChangeAttribute">
                 <label for="attribute">Atributo</label>
-                <select class="form-control" id="attribute" ng-model="attribute">
+                <select class="form-control" id="attribute" ng-model="tempEvent.attribute">
                     <option ng-repeat="attribute in attributes" value="{{attribute.type}}">{{attribute.text}}</option>
                 </select>
             </div>
             <div class="form-group" ng-show="isGoToScene">
                 <label for="scene">Cena</label>
-                <ui-select id="scene" ng-model="selectedScene">
+                <ui-select id="scene" ng-model="selectedScene" ng-change="changeScene(selectedScene)">
                     <ui-select-match>
                         <span ng-bind="selectedScene.title.pt_br"></span>
                     </ui-select-match>
@@ -33,18 +33,14 @@
             </div>
             <div class="form-group" ng-show="isAddItem">
                 <label for="item">Item</label>
-                <ui-select id="item" ng-model="selectedItem">
+                <ui-select id="item" ng-model="selectedItem" on-select="changeItem(selectedItem)" ng->
                     <ui-select-match>
-                        <span ng-bind="selectedItem.name.pt_br"></span>
+                        <span>{{selectedItem.name.pt_br}}</span>
                     </ui-select-match>
-                    <ui-select-choices repeat="item in (availableItems | filter: $select.search) track by item._id">
+                    <ui-select-choices repeat="item in (availableItems | filter: $select.search)">
                         <span ng-bind="item.name.pt_br"></span>
                     </ui-select-choices>
                 </ui-select>
-            </div>
-            <div class="form-group" ng-show="isGameOver">
-                <label for="gameover">Mensagem</label>
-                <input type="text" id="gameover" class="form-control" ng-model="gameOver" />
             </div>
         </div>
     </div>
@@ -52,19 +48,19 @@
         <div class="col-lg-12">
             <div class="form-group" ng-show="isChangeAttribute">
                 <label for="value">Valor</label>
-                <input type="number" id="value" class="form-control" ng-model="value" />
+                <input type="number" id="value" class="form-control" ng-model="tempEvent.value" />
             </div>
             <div class="form-group" ng-show="isAddItem">
                 <label for="quantity">Quantidade</label>
-                <input type="number" id="quantity" ng-model="quantity" class="form-control" min="1" />
+                <input type="number" id="quantity" ng-model="tempEvent.quantity" class="form-control" min="1" />
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group" ng-show="isChangeAttribute">
+            <div class="form-group" ng-show="isChangeAttribute || isGameOver">
                 <label for="text">Texto</label>
-                <input type="text" id="text" class="form-control" ng-model="attrChangeText" />
+                <input type="text" id="text" class="form-control" ng-model="tempEvent.text.pt_br" />
             </div>
         </div>
     </div>
@@ -75,7 +71,7 @@
             <button class="btn btn-danger pull-right" ng-click="cancel()">Cancelar</button>
         </div>
         <div class="col-lg-2">
-            <button class="btn btn-success pull-right" ng-click="createEvent()">Ok</button>
+            <button class="btn btn-success pull-right" ng-click="confirm()">Ok</button>
         </div>
     </div>   
 </div>
