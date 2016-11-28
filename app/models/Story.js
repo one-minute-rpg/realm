@@ -119,6 +119,9 @@ module.exports = function() {
                 },
                 quantity: {
                     type: Number //Numer oque afetará a quantidade do item
+                },
+                scene_id: {
+                    type: String
                 }
             }]
         }],
