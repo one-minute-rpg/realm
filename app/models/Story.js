@@ -126,21 +126,44 @@ module.exports = function() {
             }]
         }],
         scenes: [{
+            scene_id: {
+                type: String
+            },
             type: {
                 type: String
             },
             title: {
-                type: String
+                pt_br: {
+                    type: String
+                },
+                en_us: {
+                    type: String
+                }
             },
             text: {
-                type: String
+                pt_br: {
+                    type: String
+                },
+                en_us: {
+                    type: String
+                }
             },
             actions: [{
                 text: {
-                    type: String
+                    pt_br: {
+                        type: String
+                    },
+                    en_us: {
+                        type: String
+                    }
                 },
-                require_item_ids: [{
-                    type: [mongoose.Schema.ObjectId], //Array contento os ids dos itens
+                require_items: [{
+                    item_id: {
+                        type: String
+                    }, //Array contento os ids dos itens
+                    quantity: {
+                        type: Number
+                    }
                 }],
                 require_attribute_value: {
                     health: {
@@ -175,13 +198,13 @@ module.exports = function() {
                         type: Number
                     },
                     item_id: {
-                        type: mongoose.Schema.ObjectId //Id do item afetado pelo evento
+                        type: String //Id do item afetado pelo evento
                     },
                     quantity: {
                         type: Number //Numer oque afetará a quantidade do item
                     },
                     scene_id: {
-                        type: mongoose.Schema.ObjectId //Id da cena a ser encaminhado
+                        type: String //Id da cena a ser encaminhado
                     }
                 }]
             }]
