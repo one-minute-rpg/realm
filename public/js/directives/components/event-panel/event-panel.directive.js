@@ -218,10 +218,10 @@ angular.module('realm')
         $scope.attributes = attributes;
         $scope.eventType = null;
 
-        $scope.availableScenes = availableScenes;
+        $scope.availableScenes = angular.copy(availableScenes);
         $scope.selectedScene = {};
 
-        $scope.availableItems = availableItems;
+        $scope.availableItems = angular.copy(availableItems);
         $scope.selectedItem = {};
 
         debugger;
@@ -235,10 +235,6 @@ angular.module('realm')
         $scope.updateEvent = updateEvent;
         $scope.changeItem = changeItem;
         $scope.changeScene = changeScene;
-
-
-
-        console.log($scope.availableItems);
 
         function refresh(){ 
             $scope.isChangeAttribute = $scope.tempEvent.type == EventType.CHANGE_ATTRIBUTE;
@@ -270,7 +266,6 @@ angular.module('realm')
         };
 
         function updateEvent(){
-            debugger;
             var event = {};
 
             switch($scope.tempEvent.type){
@@ -346,7 +341,6 @@ angular.module('realm')
         };
 
         function copy(originalEvent){
-            debugger;
             var tmp = {};
 
             if(!!originalEvent){
@@ -359,7 +353,7 @@ angular.module('realm')
 
                 debugger;
                 $scope.selectedItem = findItem(originalEvent.item_id);
-                $scope.selectedScene.scene_id = findScene(originalEvent.scene_id);
+                $scope.selectedScene = findScene(originalEvent.scene_id);
             }else{
                 tmp.type = '';
                 tmp.attribute = '';
@@ -399,7 +393,7 @@ angular.module('realm')
             return{
                 event_id: tempEvent.event_id,
                 type: tempEvent.type,
-                scene_id: tempEvent.scene_id
+                scene_id: $scope.selectedScene.scene_id
             };
         };
 
@@ -416,7 +410,7 @@ angular.module('realm')
 
         function findItem(item_id){
             var item = $scope.availableItems.find(function(elem){
-                return elem.item_id = item_id;
+                return elem.item_id == item_id;
             });
 
             var index = $scope.availableItems.indexOf(item);
@@ -425,8 +419,10 @@ angular.module('realm')
         };
 
         function findScene(scene_id){
-            return $scope.availableScenes.find(function(elem){
-                return elem.scene_id = scene_id;
+            var scene = $scope.availableScenes.find(function(elem){
+                return elem.scene_id == scene_id;
             });
+            var index = $scope.availableScenes.indexOf(scene);
+            return $scope.availableScenes[index];
         };
     }]);

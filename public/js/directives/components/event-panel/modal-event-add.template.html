@@ -24,16 +24,16 @@
                 <label for="scene">Cena</label>
                 <ui-select id="scene" ng-model="selectedScene" ng-change="changeScene(selectedScene)">
                     <ui-select-match>
-                        <span ng-bind="selectedScene.title.pt_br"></span>
+                        <span>{{selectedScene.title.pt_br}}</span>
                     </ui-select-match>
-                    <ui-select-choices repeat="scene in (availableScenes | filter: $select.search) track by scene.scene_id">
+                    <ui-select-choices repeat="scene in (availableScenes | filter: $select.search)">
                         <span ng-bind="scene.title.pt_br"></span>
                     </ui-select-choices>
                 </ui-select>
             </div>
             <div class="form-group" ng-show="isAddItem">
                 <label for="item">Item</label>
-                <ui-select id="item" ng-model="selectedItem" on-select="changeItem(selectedItem)" ng->
+                <ui-select id="item" ng-model="selectedItem" ng-change="changeItem(selectedItem)" ng->
                     <ui-select-match>
                         <span>{{selectedItem.name.pt_br}}</span>
                     </ui-select-match>
