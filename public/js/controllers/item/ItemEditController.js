@@ -37,7 +37,7 @@ ItemEditrRoute.$inject = ['$stateProvider'];
 
 function ItemEditrRoute($stateProvider){
     
-    $stateProvider.state('editQuestItem', {
+    $stateProvider.state('editItem', {
         url: '/myStories/edit/:story_id/edit/item/quest/:item_id',
         templateUrl: 'partials/item/item-maintenance.html',
         controller: 'ItemEditController',

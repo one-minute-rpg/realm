@@ -14,7 +14,7 @@ function ItemListController($scope, $state, $uibModal) {
     $scope.setPage = setPage;
 
     function edit(item_id){
-        $state.go('editQuestItem', { 
+        $state.go('editItem', { 
             item_id: item_id,
             story_id: $state.params.story_id
         });
