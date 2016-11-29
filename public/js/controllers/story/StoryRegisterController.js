@@ -11,7 +11,12 @@ function StoryRegisterController($scope, $q, $state, StoryForInsertService){
 
     function save() {
         $q.when(StoryForInsertService.insert($scope.story))
+            .then(getStoryFromResponse)
             .then(edit);
+    };
+
+    function getStoryFromResponse(response){
+        return response.data;
     };
 
     function edit(story){
