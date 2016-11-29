@@ -9,6 +9,7 @@ function SceneRegisterController($scope, $q, $state, story, SceneForInsertServic
     $scope.scene = { title: {}, text: {} };
 
     $scope.save = save;
+    $scope.back = back;
 
     function save(){
         if(!$scope.scene.scene_id){
