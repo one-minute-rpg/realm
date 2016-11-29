@@ -16,6 +16,10 @@ angular.module('realm')
                 $scope.newInventoryItem = function(){
                     $state.go('newInventoryItem', { story_id: $stateParams.story_id });
                 };
+
+                $scope.newScene = function(){
+                    $state.go('newScene', { story_id: $stateParams.story_id });
+                };
             }
         };
     }]);
