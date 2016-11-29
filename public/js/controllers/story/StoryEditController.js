@@ -3,15 +3,20 @@ angular
     .config(StoryEditRoute)
     .controller('StoryEditController', StoryEditController);
 
-StoryEditController.$inject = ['$scope', '$q', 'StoryForEditService', 'story'];
+StoryEditController.$inject = ['$scope', '$q', '$state', 'StoryForEditService', 'story'];
 
-function StoryEditController($scope, $q, StoryForEditService, story){
+function StoryEditController($scope, $q, $state, StoryForEditService, story){
 
     $scope.story = story;
     $scope.save = save;
+    $scope.back = back;
 
     function save() {
         StoryForEditService.update($scope.story);
+    };
+
+    function back(){
+        $state.go('storyList');
     };
 };
 
