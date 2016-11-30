@@ -149,6 +149,9 @@ module.exports = function() {
                 }
             },
             actions: [{
+                action_id:{
+                    type: String
+                },
                 text: {
                     pt_br: {
                         type: String

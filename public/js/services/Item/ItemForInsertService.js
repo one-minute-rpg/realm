@@ -22,16 +22,16 @@ function ItemForInsertService($q, StorageService, ToastService){
     function savedSuccessfully(response){
         ToastService.success('História salva.');
         return response;
-    }
+    };
 
     function validate(story){
         return true;
-    }
+    };
 
     function pushItemToStory(story, item){
         story.items.push(item);
         return story;
-    }
+    };
 
     return service;
 };
