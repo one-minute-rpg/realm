@@ -1,9 +1,9 @@
 angular.module('realm')
     .controller('SceneListController', SceneListController);
 
-SceneListController.$inject = ['$scope', '$state'];
+SceneListController.$inject = ['$scope', '$state', '$uibModal'];
 
-function SceneListController($scope, $state) {
+function SceneListController($scope, $state, $uibModal) {
 
     $scope.currentPage = 1;
     $scope.scenesPerPage = 5;
@@ -11,6 +11,7 @@ function SceneListController($scope, $state) {
 
     $scope.setPage = setPage;
     $scope.edit = edit;
+    $scope.remove = remove;
 
     function setPage(pageNo){
         $scope.currentPage = pageNo;
@@ -33,6 +34,42 @@ function SceneListController($scope, $state) {
 
     function refreshList(){
         $scope.scenesForList = filterScenesForList();
+    };
+
+    function remove(scene){
+        var modal = $uibModal.open({
+                        templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
+                        controller: ['$scope', '$uibModalInstance', 'scene', function($scope, $uibModalInstance, scene){
+                            $scope.obj = scene;
+                            $scope.text = scene.title.pt_br;
+                            $scope.confirm = function(scene){
+                                $uibModalInstance.close(scene);
+                            };
+
+                            $scope.cancel = function(){
+                                $uibModalInstance.close();
+                            };
+                        }],
+                        resolve: {
+                            scene: function(){
+                                return scene;
+                            }
+                        }
+                    });
+
+        modal.result.then(function(scene){
+            if(!!scene){
+                removeSceneFromStory(scene);
+            };
+        });
+    };
+
+    function removeSceneFromStory(scene){
+        var index = $scope.scenes.indexOf(scene);
+
+        $scope.scenes.splice(index, 1);
+
+        refreshList();
     };
 
     refreshList();
