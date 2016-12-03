@@ -179,6 +179,9 @@ angular.module('realm')
             switch($scope.context){
                 case 'Item': options = eventsAvailableForInventoryItem();
                 break;
+
+                case 'Action': options = eventsAvailableForAction();
+                break;
             };
 
             return options;
@@ -207,16 +210,35 @@ angular.module('realm')
             return types;
         };
 
+        function eventsAvailableForAction(){
+            var types = [];
+
+            types.push({ type_id: null, text: 'Selecione um' });
+            types.push({ type_id: EventType.GO_TO_SCENE, text: 'Ir para Cena' });
+            types.push({ type_id: EventType.CHANGE_ATTRIBUTE, text: 'Alterar Atributo' });
+            types.push({ type_id: EventType.ADD_ITEM, text: 'Adicionar Item' });
+            types.push({ type_id: EventType.REMOVE_ITEM, text: 'Remover Item' });
+            types.push({ type_id: EventType.USE_ITEM, text: 'Usar Item' });
+            types.push({ type_id: EventType.VICTORY, text: 'Vitória' });
+            types.push({ type_id: EventType.GAME_OVER, text: 'Game Over' });
+            types.push({ type_id: EventType.SAVE_GAME, text: 'Salvar Jogo' });
+        
+            return types;
+        };
+
         function init(){
             $scope.eventList = $scope.convertToEventList($scope.events);
         };
 
         init();
     }])
-    .controller('ModalEventPanelController', ['$scope', 'EventType', '$uibModal', '$uibModalInstance', 'options', 'attributes', 'availableScenes', 'availableItems', function($scope, EventType, $uibModal, $uibModalInstance, options, attributes, availableScenes, availableItems){
+    .controller('ModalEventPanelController', ['$scope', 'EventType', 'ItemType', '$uibModal', '$uibModalInstance', 'options', 'attributes', 'availableScenes', 'availableItems', function($scope, EventType, ItemType, $uibModal, $uibModalInstance, options, attributes, availableScenes, availableItems){
+        
         $scope.options = options;
         $scope.attributes = attributes;
         $scope.eventType = null;
+
+        $scope.getAvailableItems = getAvailableItems;
 
         $scope.availableScenes = angular.copy(availableScenes);
         $scope.selectedScene = {};
@@ -224,7 +246,6 @@ angular.module('realm')
         $scope.availableItems = angular.copy(availableItems);
         $scope.selectedItem = {};
 
-        debugger;
         $scope.tempEvent = copy($scope.$resolve.originalEvent);
         refresh();
 
@@ -240,7 +261,25 @@ angular.module('realm')
             $scope.isChangeAttribute = $scope.tempEvent.type == EventType.CHANGE_ATTRIBUTE;
             $scope.isGoToScene = $scope.tempEvent.type == EventType.GO_TO_SCENE;
             $scope.isAddItem = $scope.tempEvent.type == EventType.ADD_ITEM;
+            $scope.isRemoveItem = $scope.tempEvent.type == EventType.REMOVE_ITEM;
+            $scope.isUseItem = $scope.tempEvent.type == EventType.USE_ITEM;
+            $scope.isVictory = $scope.tempEvent.type == EventType.VICTORY;
             $scope.isGameOver = $scope.tempEvent.type == EventType.GAME_OVER;
+            $scope.isSaveGame = $scope.tempEvent.type == EventType.SAVE_GAME;
+        };
+
+        function getAvailableItems(){
+            var type = $scope.isUseItem ? ItemType.INVENTORY : null;
+
+            if(!!type){
+                return $scope.availableItems.map(function(item){
+                    if(item.type == type){
+                        return item;
+                    }
+                });
+            }else{
+                return $scope.availableItems;
+            }
         };
 
         function createEvent(){
@@ -256,7 +295,19 @@ angular.module('realm')
                 case EventType.ADD_ITEM: event = createAddItemEvent();
                 break;
 
+                case EventType.REMOVE_ITEM: event = createRemoveItemEvent();
+                break;
+
+                case EventType.USE_ITEM: event = createUseItemEvent();
+                break;
+
                 case EventType.GAME_OVER: event = createGameOverEvent();
+                break;
+
+                case EventType.VICTORY: event = createVictoryEvent();
+                break;
+
+                case EventType.SAVE_GAME: event = createSaveGameEvent();
                 break;
             };
 
@@ -285,6 +336,8 @@ angular.module('realm')
             $uibModalInstance.close(event);
         };
 
+
+//-------------MODAL BUTTONS
         function confirm(){
             if(!!$scope.tempEvent.event_id){
                 debugger;
@@ -298,6 +351,8 @@ angular.module('realm')
             $uibModalInstance.close();
         };
 
+
+//----------CREATE EVENTS
         function createChangeAttributeEvent(){
             var event = {};
 
@@ -307,6 +362,13 @@ angular.module('realm')
             event.text = $scope.tempEvent.text;;
 
             return event;
+        };
+
+        function createVictoryEvent(){
+            return { 
+                type: $scope.tempEvent.type, 
+                text: $scope.tempEvent.text 
+            };
         };
 
         function createGameOverEvent(){
@@ -324,7 +386,6 @@ angular.module('realm')
         };
 
         function createAddItemEvent(){
-            debugger;
             return { 
                 type: $scope.tempEvent.type, 
                 item_id: $scope.selectedItem.item_id, 
@@ -332,6 +393,28 @@ angular.module('realm')
             };
         };
 
+        function createRemoveItemEvent(){
+            return { 
+                type: $scope.tempEvent.type, 
+                item_id: $scope.selectedItem.item_id, 
+                quantity: $scope.tempEvent.quantity 
+            };
+        };
+
+        function createUseItemEvent(){
+            return {
+                type: $scope.tempEvent.type, 
+                item_id: $scope.selectedItem.item_id, 
+            };
+        };
+
+        function createSaveGameEvent(){
+            return { 
+                type: $scope.tempEvent.type
+            };
+        };
+
+//------------CHANGES
         function changeItem(selectedItem){
             $scope.selectedItem = selectedItem;
         };
@@ -365,6 +448,8 @@ angular.module('realm')
             return tmp;
         };
 
+
+//-------------UPDATE EVENTS
         function updateChangeAttributeEvent(){
             var tempEvent = $scope.tempEvent;
             
@@ -408,6 +493,8 @@ angular.module('realm')
             };
         };
 
+
+//-------------FINDS
         function findItem(item_id){
             var item = $scope.availableItems.find(function(elem){
                 return elem.item_id == item_id;
