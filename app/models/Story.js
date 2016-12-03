@@ -183,7 +183,10 @@ module.exports = function() {
                     }
                 },
                 events: [{
-                    event_type: {
+                    event_id:{
+                        type: String
+                    },
+                    type: {
                         type: String
                     },
                     text: {
