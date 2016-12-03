@@ -45,7 +45,7 @@ angular.module('realm')
 
             modal.result.then(function(event){
                 debugger;
-                if(!!event)
+                if(!!event.type)
                     $scope.events.push(event);
                 
                 $scope.eventList = $scope.convertToEventList($scope.events);
