@@ -6,7 +6,7 @@ ActionRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'ActionFo
 
 function ActionRegisterController($scope, $q, $state, story, ActionForInsertService) {
     
-    $scope.action = { text: {} };
+    $scope.action = {};
 
     $scope.save = save;
     $scope.back = back;
