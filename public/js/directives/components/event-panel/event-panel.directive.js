@@ -442,7 +442,7 @@ angular.module('realm')
                 tmp.attribute = '';
                 tmp.value = null;
                 tmp.quantity = null;
-                tmp.text = { pt_br: '' };
+                tmp.text = '';
             };
 
             return tmp;

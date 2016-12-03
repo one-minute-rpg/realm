@@ -11,8 +11,8 @@
             <td>
                 <img src="/img/icons/scenes/decision.png" alt="DECISION" style="width: 32px; height: 32px;" />
             </td>
-            <td>{{scene.title.pt_br | limitTo:20}}...</td>
-            <td>{{scene.text.pt_br | limitTo:40}}...</td>
+            <td>{{scene.title | limitTo:20}}...</td>
+            <td>{{scene.text | limitTo:40}}...</td>
             <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="edit(scene.scene_id)"></span></td>
             <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(scene)"></span></td>
         </tr>

@@ -3,21 +3,10 @@ var mongoose = require('mongoose');
 module.exports = function() {
     var schema = mongoose.Schema({
         title: {
-            pt_br: {
-                type: String,
-                required: true
-            },
-            en_us: {
-                type: String
-            }
+            type: String
         },
         description: {
-            pt_br: {
-                type: String
-            },
-            en_us: {
-                type: String
-            }
+            type: String
         },
         cover: {
             type: String
@@ -76,22 +65,10 @@ module.exports = function() {
                 type: String
             },
             name: {
-                pt_br: {
-                    type: String,
-                    required: true
-                },
-                en_us: {
-                    type: String
-                }
+                type: String
             },
             description: {
-                pt_br: {
-                    type: String,
-                    required: true
-                },
-                en_us: {
-                    type: String
-                }
+                type: String
             },
             events: [{
                 event_id: {
@@ -101,12 +78,7 @@ module.exports = function() {
                     type: String
                 },
                 text: {
-                    pt_br: {
-                        type: String
-                    },
-                    en_us: {
-                        type: String
-                    }
+                    type: String
                 },
                 attribute: {
                     type: String
@@ -133,32 +105,17 @@ module.exports = function() {
                 type: String
             },
             title: {
-                pt_br: {
-                    type: String
-                },
-                en_us: {
-                    type: String
-                }
+                type: String
             },
             text: {
-                pt_br: {
-                    type: String
-                },
-                en_us: {
-                    type: String
-                }
+                type: String
             },
             actions: [{
                 action_id:{
                     type: String
                 },
                 text: {
-                    pt_br: {
-                        type: String
-                    },
-                    en_us: {
-                        type: String
-                    }
+                    type: String
                 },
                 require_items: [{
                     item_id: {
@@ -190,12 +147,7 @@ module.exports = function() {
                         type: String
                     },
                     text: {
-                        pt_br: {
-                            type: String
-                        },
-                        en_us: {
-                            type: String
-                        }
+                        type: String
                     },
                     attribute: {
                         type: String

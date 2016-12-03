@@ -41,7 +41,7 @@ function SceneListController($scope, $state, $uibModal) {
                         templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
                         controller: ['$scope', '$uibModalInstance', 'scene', function($scope, $uibModalInstance, scene){
                             $scope.obj = scene;
-                            $scope.text = scene.title.pt_br;
+                            $scope.text = scene.title;
                             $scope.confirm = function(scene){
                                 $uibModalInstance.close(scene);
                             };

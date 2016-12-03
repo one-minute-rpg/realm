@@ -25,7 +25,7 @@ angular.module('realm')
             var actionList = actions.map(function(act){
                 return {
                     action_id: act.action_id,
-                    text: act.text.pt_br
+                    text: act.text
                 };
             });
 

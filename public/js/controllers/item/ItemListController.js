@@ -25,7 +25,7 @@ function ItemListController($scope, $state, $uibModal) {
                         templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
                         controller: ['$scope', '$uibModalInstance', 'item', function($scope, $uibModalInstance, item){
                             $scope.obj = item;
-                            $scope.text = item.name.pt_br;
+                            $scope.text = item.name;
                             $scope.confirm = function(item){
                                 $uibModalInstance.close(item);
                             };

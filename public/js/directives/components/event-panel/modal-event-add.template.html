@@ -24,10 +24,10 @@
                 <label for="scene">Cena</label>
                 <ui-select id="scene" ng-model="selectedScene" ng-change="changeScene(selectedScene)">
                     <ui-select-match>
-                        <span>{{selectedScene.title.pt_br}}</span>
+                        <span>{{selectedScene.title}}</span>
                     </ui-select-match>
                     <ui-select-choices repeat="scene in (availableScenes | filter: $select.search)">
-                        <span ng-bind="scene.title.pt_br"></span>
+                        <span ng-bind="scene.title"></span>
                     </ui-select-choices>
                 </ui-select>
             </div>
@@ -35,10 +35,10 @@
                 <label for="item">Item</label>
                 <ui-select id="item" ng-model="selectedItem" ng-change="changeItem(selectedItem)" ng->
                     <ui-select-match>
-                        <span>{{selectedItem.name.pt_br}}</span>
+                        <span>{{selectedItem.name}}</span>
                     </ui-select-match>
                     <ui-select-choices repeat="item in (getAvailableItems() | filter: $select.search)">
-                        <span ng-bind="item.name.pt_br"></span>
+                        <span ng-bind="item.name"></span>
                     </ui-select-choices>
                 </ui-select>
             </div>
@@ -60,7 +60,7 @@
         <div class="col-lg-12">
             <div class="form-group" ng-show="isChangeAttribute || isGameOver || isVictory">
                 <label for="text">Texto</label>
-                <input type="text" id="text" class="form-control" ng-model="tempEvent.text.pt_br" />
+                <input type="text" id="text" class="form-control" ng-model="tempEvent.text" />
             </div>
         </div>
     </div>
