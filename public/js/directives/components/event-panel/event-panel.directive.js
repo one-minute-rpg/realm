@@ -81,7 +81,6 @@ angular.module('realm')
         };
 
         function editEvent(event_id){
-            debugger;
             var event = findEvent(event_id);
 
             $scope.eventTypeOptions = convertEventTypeToOption();
@@ -104,8 +103,6 @@ angular.module('realm')
             });
 
             modal.result.then(function(e){ 
-                debugger;
-                //substituir evento / encontrar forma de distinguir novo de edit
                 var old = findEvent(e.event_id);
                 var index = $scope.events.indexOf(old);
 

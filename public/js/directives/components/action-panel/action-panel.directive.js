@@ -11,13 +11,14 @@ angular.module('realm')
 
 
     }])
-    .controller('ActionPanelController', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams){
+    .controller('ActionPanelController', ['$scope', '$state', '$stateParams', '$uibModal', function($scope, $state, $stateParams, $uibModal){
 
         debugger;
 
         $scope.init = init;
         $scope.convertToActionList = convertToActionList;
         $scope.addAction = addAction;
+        $scope.remove = remove;
         $scope.editAction = editAction;
 
         function convertToActionList(actions){
@@ -40,6 +41,48 @@ angular.module('realm')
         function editAction(action){
             debugger;
             $state.go('editAction', { story_id: $stateParams.story_id, scene_id: $stateParams.scene_id, action_id: action.action_id });
+        };
+
+        function remove(action){
+            debugger;
+            var modal = $uibModal.open({
+                            templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
+                            controller: ['$scope', '$uibModalInstance', 'action', function($scope, $uibModalInstance, action){
+                                $scope.obj = action.action_id;
+                                $scope.text = 'a ação';
+                                $scope.confirm = function(action_id){
+                                    $uibModalInstance.close(action_id);
+                                };
+
+                                $scope.cancel = function(){
+                                    $uibModalInstance.close();
+                                };
+                            }],
+                            resolve: {
+                                action: function(){
+                                    return action;
+                                }
+                            }
+                        });
+
+            modal.result.then(function(action_id){
+                if(!!action_id){
+                    removeAction(action_id);
+                };
+            });
+        };
+
+        function removeAction(action_id){
+            var action = $scope.actions.find(function(elem){
+                return elem.action_id == action_id;
+            });
+
+            var index = $scope.actions.indexOf(action);
+
+            if(index > -1)
+                $scope.actions.splice(index, 1);
+
+            init();
         };
 
         function init(){

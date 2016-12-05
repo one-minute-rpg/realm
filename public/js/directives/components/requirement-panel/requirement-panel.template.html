@@ -1,0 +1,12 @@
+<button class="btn btn-default">+ Requisito</button>
+<div class="requirement-list">
+    <div class="table-responsive">
+        <table class="table">
+            <tr ng-repeat="req in requirementList">
+                <td>{{ req.text }}</td>
+                <td><span class="glyphicon glyphicon-pencil pull-right clickable"></span></td>
+                <td><span class="glyphicon glyphicon-trash pull-right clickable"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>

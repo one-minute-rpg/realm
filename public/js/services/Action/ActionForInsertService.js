@@ -12,6 +12,13 @@ function ActionForInsertService($q, StorageService, ToastService){
         debugger;
         action.action_id = chance.guid();
 
+        action.require_attribute_value = {
+            health: null,
+            strength: null,
+            intelligence: null,
+            agility: null
+        };
+
         if(validate(action)){
             return $q.when(pushActionToScene(story, scene_id, action))
                     .then(StorageService.update)
