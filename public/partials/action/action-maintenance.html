@@ -11,11 +11,84 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <event-panel events="action.events" context="'Action'" available-scenes="story.scenes" available-items="story.items"></event-panel>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Atributos Requeridos</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <label for="health">Vida</label>
+                                    <input type="number" class="form-control" id="health" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="strength">Força</label>
+                                    <input type="number" class="form-control" id="strength" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="agility">Agilidade</label>
+                                    <input type="number" class="form-control" id="agility" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="intelligence">Inteligência</label>
+                                    <input type="number" class="form-control" id="intelligence" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <requirement-panel req-attributes="action.require_attribute_value" req-items="action.require_items" available-items="story.items"></requirement-panel>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Itens Requeridos</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="item"></label>
+                                    <ui-select id="item" class="pull-left" style="width: 200px;" ng-model="selectedItem" ng-change="changeItem(selectedItem)" aria-placeholder="Item">
+                                        <ui-select-match>
+                                            <span>{{selectedItem.name}}</span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item in (items | filter: $select.search)">
+                                            <span ng-bind="item.name"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <input type="number" class="form-control pull-left" id="quantity" style="width: 60px;"/>
+                                    <button class="btn btn-success pull-left" style="width: 40px;">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr ng-repeat="req in requirementList">
+                                            <td>{{ req.text }}</td>
+                                            <td><span class="glyphicon glyphicon-pencil pull-right clickable"></span></td>
+                                            <td><span class="glyphicon glyphicon-trash pull-right clickable"></span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <event-panel events="action.events" context="'Action'" available-scenes="story.scenes" available-items="story.items"></event-panel>
                     </div>
                 </div>
                 <div class="row">
