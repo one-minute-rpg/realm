@@ -8,6 +8,15 @@ function ActionRegisterController($scope, $q, $state, story, ActionForInsertServ
     
     $scope.action = {};
 
+    $scope.requiredAttributes = {
+        health: null,
+        strength: null,
+        agility: null,
+        intelligence: null
+    };
+
+    $scope.action.require_attribute_value = $scope.requiredAttributes;
+
     $scope.save = save;
     $scope.back = back;
 

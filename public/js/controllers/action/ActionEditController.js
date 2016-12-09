@@ -34,6 +34,8 @@ function ActionEditController($scope, $q, $state, $stateParams, story, ActionFor
         });
 
         $scope.action = scene.actions[index];
+
+        $scope.requiredAttributes = $scope.action.require_attribute_value;
     };
 
     init();
