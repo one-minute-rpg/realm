@@ -1,12 +1,15 @@
-<button class="btn btn-default" ng-click="addAction()">+ Ação</button>
-<div class="action-list">
-    <div class="table-responsive">
-        <table class="table">
-            <tr ng-repeat="action in actionList">
-                <td>{{ action.text }}</td>
-                <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="editAction(action)"></span></td>
-                <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(action)"></span></td>
-            </tr>
-        </table>
+<div>
+    <h4>Painel de Ações</h2>
+    <button class="btn btn-default" ng-click="addAction()">+ Ação</button>
+    <div class="action-list">
+        <div class="table-responsive">
+            <table class="table">
+                <tr ng-repeat="action in actionList">
+                    <td>{{ action.text }}</td>
+                    <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="editAction(action)"></span></td>
+                    <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(action)"></span></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

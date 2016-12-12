@@ -1,12 +1,15 @@
-<button class="btn btn-default" ng-click="add()">+ Requisito de Item</button>
-<div class="requirement-list">
-    <div class="table-responsive">
-        <table class="table">
-            <tr ng-repeat="req in requirementList">
-                <td>{{ req.text }}</td>
-                <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="edit(req)"></span></td>
-                <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(req.requirement_id)"></span></td>
-            </tr>
-        </table>
+<div>
+    <h4>Painel de Requisito de Item</h4>
+    <button class="btn btn-default" ng-click="add()">+ Requisito de Item</button>
+    <div class="requirement-list">
+        <div class="table-responsive">
+            <table class="table">
+                <tr ng-repeat="req in requirementList">
+                    <td>{{ req.text }}</td>
+                    <td><span class="glyphicon glyphicon-pencil pull-right clickable" ng-click="edit(req)"></span></td>
+                    <td><span class="glyphicon glyphicon-trash pull-right clickable" ng-click="remove(req.requirement_id)"></span></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
