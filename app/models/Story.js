@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 
 module.exports = function() {
     var schema = mongoose.Schema({
+        story_id:{
+            type: String
+        },
         title: {
             type: String
         },
@@ -118,6 +121,9 @@ module.exports = function() {
                     type: String
                 },
                 require_items: [{
+                    requirement_id:{
+                        type: String
+                    },
                     item_id: {
                         type: String
                     }, //Array contento os ids dos itens
@@ -165,7 +171,33 @@ module.exports = function() {
                         type: String //Id da cena a ser encaminhado
                     }
                 }]
-            }]
+            }],
+            on_die_events: [{
+                    event_id:{
+                        type: String
+                    },
+                    type: {
+                        type: String
+                    },
+                    text: {
+                        type: String
+                    },
+                    attribute: {
+                        type: String
+                    },
+                    value: {
+                        type: Number
+                    },
+                    item_id: {
+                        type: String //Id do item afetado pelo evento
+                    },
+                    quantity: {
+                        type: Number //Numer oque afetará a quantidade do item
+                    },
+                    scene_id: {
+                        type: String //Id da cena a ser encaminhado
+                    }
+                }]
         }]
     });
 

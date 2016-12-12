@@ -10,6 +10,8 @@ function StoryForInsertService($q, StorageService, ToastService){
     service.insert = insert;
 
     function insert(story) {
+        story.story_id = chance.guid();
+
         if(validate(story)){
             return $q.when(StorageService.insert(story))
                 .then(savedSuccessfully)

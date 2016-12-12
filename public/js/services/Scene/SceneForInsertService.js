@@ -1,9 +1,9 @@
 angular.module('realm')
     .factory('SceneForInsertService', SceneForInsertService);
     
-SceneForInsertService.$inject = ['$q', 'StorageService', 'ToastService'];
+SceneForInsertService.$inject = ['$q', 'StorageService', 'ToastService', 'EventType'];
 
-function SceneForInsertService($q, StorageService, ToastService){
+function SceneForInsertService($q, StorageService, ToastService, EventType){
     var service = {};
 
     service.insert = insert;
@@ -12,6 +12,14 @@ function SceneForInsertService($q, StorageService, ToastService){
         debugger;
         scene.scene_id = chance.guid();
         scene.type = type;
+
+        scene.on_die_events = [];
+        scene.on_die_events.push(
+            {
+                type: EventType.GAME_OVER,
+                text: 'Fim de Jogo'
+            }
+        );
 
         if(validate(scene)){
             return $q.when(pushSceneToStory(story, scene))

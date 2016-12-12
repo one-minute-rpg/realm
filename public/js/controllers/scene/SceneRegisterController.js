@@ -7,6 +7,7 @@ SceneRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'SceneForI
 function SceneRegisterController($scope, $q, $state, story, SceneForInsertService, SceneType) {
     
     $scope.scene = {};
+    $scope.story = story;
 
     $scope.save = save;
     $scope.back = back;

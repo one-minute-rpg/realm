@@ -179,6 +179,9 @@ angular.module('realm')
 
                 case 'Action': options = eventsAvailableForAction();
                 break;
+
+                case 'Scene': options = eventsAvailableForAction();
+                break;
             };
 
             return options;
@@ -337,7 +340,6 @@ angular.module('realm')
 //-------------MODAL BUTTONS
         function confirm(){
             if(!!$scope.tempEvent.event_id){
-                debugger;
                 updateEvent();
             }else{
                 createEvent();
