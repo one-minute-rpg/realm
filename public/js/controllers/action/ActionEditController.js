@@ -5,7 +5,7 @@ angular.module('realm')
 ActionEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'ActionForEditService'];
 
 function ActionEditController($scope, $q, $state, $stateParams, story, ActionForEditService) {
-
+    debugger;
     $scope.story = story;
     $scope.action = {};
 
@@ -22,7 +22,7 @@ function ActionEditController($scope, $q, $state, $stateParams, story, ActionFor
     };
 
     function init(){
-        debugger;
+         
         var index = story.scenes.findIndex(function(scene){
             return scene.scene_id == $stateParams.scene_id;
         });

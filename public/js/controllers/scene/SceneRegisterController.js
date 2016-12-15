@@ -7,6 +7,9 @@ SceneRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'SceneForI
 function SceneRegisterController($scope, $q, $state, story, SceneForInsertService, SceneType) {
     
     $scope.scene = {};
+    $scope.scene.on_die_events = [];
+    $scope.scene.actions = [];
+
     $scope.story = story;
 
     $scope.save = save;
@@ -20,7 +23,7 @@ function SceneRegisterController($scope, $q, $state, story, SceneForInsertServic
     };
 
     function back(){
-        $state.go('editStory', { story_id: story._id });
+        $state.go('editScene', { story_id: story._id, scene_id: $scope.scene.scene_id });
     };
 };
 

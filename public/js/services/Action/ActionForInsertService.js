@@ -9,7 +9,7 @@ function ActionForInsertService($q, StorageService, ToastService){
     service.insert = insert;
 
     function insert(story, scene_id, action) {
-        debugger;
+         
         action.action_id = chance.guid();
 
         if(validate(action)){
@@ -29,7 +29,7 @@ function ActionForInsertService($q, StorageService, ToastService){
     };
 
     function pushActionToScene(story, scene_id, action){
-        debugger;
+         
         var scene = findScene(story, scene_id);
 
         scene.actions.push(action);
@@ -38,7 +38,7 @@ function ActionForInsertService($q, StorageService, ToastService){
     };
 
     function findScene(story, scene_id){
-        debugger;
+         
         var index = story.scenes.findIndex(function(scene){
             return scene.scene_id == scene_id;
         });

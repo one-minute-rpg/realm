@@ -7,6 +7,8 @@ ActionRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'ActionFo
 function ActionRegisterController($scope, $q, $state, story, ActionForInsertService) {
     
     $scope.action = {};
+    $scope.action.events = [];
+    $scope.action.require_items = [];
 
     $scope.requiredAttributes = {
         health: null,
@@ -28,7 +30,7 @@ function ActionRegisterController($scope, $q, $state, story, ActionForInsertServ
     };
 
     function back(){
-        $state.go('editScene', { story_id: story._id, scene_id: $state.params.scene_id });
+        $state.go('editAction', { story_id: story._id, scene_id: $state.params.scene_id, action_id: $scope.action.action_id });
     };
 };
 

@@ -15,10 +15,10 @@
                     </form>
                 </div>
                 <div class="col-lg-4">
-                    <action-panel actions="scene.actions"></action-panel>
+                    <action-panel actions="scene.actions" ng-show="{{!!scene.scene_id}}"></action-panel>
                 </div>
                 <div class="col-lg-4">
-                    <event-panel events="scene.on_die_events" context="'Scene'" available-scenes="story.scenes" available-items="story.items"></event-panel>
+                    <event-panel events="scene.on_die_events" context="'Scene'" available-scenes="story.scenes" available-items="story.items"  ng-show="{{!!scene.scene_id}}"></event-panel>
                 </div>
             </div>
         </div>

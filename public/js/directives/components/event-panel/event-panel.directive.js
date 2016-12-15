@@ -44,7 +44,7 @@ angular.module('realm')
             });
 
             modal.result.then(function(event){
-                debugger;
+                 
                 if(!!event.type)
                     $scope.events.push(event);
                 
@@ -127,7 +127,7 @@ angular.module('realm')
         };
 
         function convertToEventList(events){
-            debugger;
+             
             var eventList = events.map(function(evt){
                 return {
                     event_id: evt.event_id,
@@ -433,7 +433,7 @@ angular.module('realm')
                 tmp.quantity = originalEvent.quantity;
                 tmp.text = originalEvent.text;
 
-                debugger;
+                 
                 $scope.selectedItem = findItem(originalEvent.item_id);
                 $scope.selectedScene = findScene(originalEvent.scene_id);
             }else{

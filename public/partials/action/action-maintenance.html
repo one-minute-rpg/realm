@@ -53,12 +53,12 @@
                     <div class="col-lg-5">
                         <div class="row">
                             <div class="col-lg-12">
-                                <item-requirement-panel available-items="story.items" req-items="action.require_items"></item-requirement-panel>
+                                <item-requirement-panel available-items="story.items" req-items="action.require_items" ng-show="action.action_id"></item-requirement-panel>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <event-panel events="action.events" context="'Action'" available-scenes="story.scenes" available-items="story.items"></event-panel>
+                        <event-panel events="action.events" context="'Action'" available-scenes="story.scenes" available-items="story.items" ng-show="action.action_id"></event-panel>
                     </div>
                 </div>
                 <div class="row">

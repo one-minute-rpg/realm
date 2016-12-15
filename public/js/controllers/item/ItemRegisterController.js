@@ -7,6 +7,7 @@ ItemRegisterController.$inject = ['$scope', '$q', '$state', 'ItemForInsertServic
 function ItemRegisterController($scope, $q, $state, ItemForInsertService, type, story, ItemType) {
 
     $scope.item = {};
+    $scope.item.events = [];
 
     $scope.showEvents = type == ItemType.INVENTORY;
 

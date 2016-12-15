@@ -57,7 +57,7 @@ angular.module('realm')
 
         function findRequirement(req){
             return $scope.reqItems.find(function(r){
-                debugger;
+                 
                 return r.requirement_id == req.requirement_id;
             });
         };
@@ -76,7 +76,7 @@ angular.module('realm')
             });
 
             modal.result.then(function(requirement){
-                debugger;
+                 
                 var oldReq = $scope.reqItems.find(function(ri){
                     return ri.requirement_id == requirement.requirement_id;
                 });
@@ -116,7 +116,7 @@ angular.module('realm')
         };
 
         function removeRequirement(requirement_id){
-            debugger;
+             
             var req = $scope.reqItems.find(function(r){
                 return r.requirement_id == requirement_id;
             });
@@ -137,7 +137,7 @@ angular.module('realm')
     }])
     .controller('ItemRequirementModalController', ['$scope', '$uibModalInstance', 'availableItems', 'Attributes', 'reqItem', function($scope, $uibModalInstance, availableItems, Attributes, reqItem){
 
-        debugger;
+         
         $scope.tempReq = !!reqItem ? reqItem : {};
         $scope.quantity = $scope.tempReq.quantity;
 
@@ -149,7 +149,7 @@ angular.module('realm')
         $scope.changeItem = changeItem;
 
         function confirm(){
-            debugger;
+             
             if(!!$scope.tempReq.requirement_id){
                 updateRequirement();
             }else{

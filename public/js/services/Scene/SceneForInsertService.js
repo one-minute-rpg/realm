@@ -9,13 +9,14 @@ function SceneForInsertService($q, StorageService, ToastService, EventType){
     service.insert = insert;
 
     function insert(story, scene, type) {
-        debugger;
+         
         scene.scene_id = chance.guid();
         scene.type = type;
 
         scene.on_die_events = [];
         scene.on_die_events.push(
-            {
+            {   
+                event_id: chance.guid(),
                 type: EventType.GAME_OVER,
                 text: 'Fim de Jogo'
             }
@@ -38,7 +39,7 @@ function SceneForInsertService($q, StorageService, ToastService, EventType){
     }
 
     function pushSceneToStory(story, scene){
-        debugger;
+         
         story.scenes.push(scene);
         return story;
     }

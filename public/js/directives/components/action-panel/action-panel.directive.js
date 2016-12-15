@@ -13,7 +13,7 @@ angular.module('realm')
     }])
     .controller('ActionPanelController', ['$scope', '$state', '$stateParams', '$uibModal', function($scope, $state, $stateParams, $uibModal){
 
-        debugger;
+         
 
         $scope.init = init;
         $scope.convertToActionList = convertToActionList;
@@ -34,17 +34,17 @@ angular.module('realm')
         };
 
         function addAction(){
-            debugger;
+             
             $state.go('newAction', { story_id: $state.params.story_id, scene_id: $state.params.scene_id });
         };
 
         function editAction(action){
-            debugger;
+             
             $state.go('editAction', { story_id: $stateParams.story_id, scene_id: $stateParams.scene_id, action_id: action.action_id });
         };
 
         function remove(action){
-            debugger;
+             
             var modal = $uibModal.open({
                             templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
                             controller: ['$scope', '$uibModalInstance', 'action', function($scope, $uibModalInstance, action){
