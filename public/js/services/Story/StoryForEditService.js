@@ -9,6 +9,7 @@ function StoryForEditService($q, $http, ToastService, StorageService){
 
     service.update = update;
     service.findById = findById;
+    service.remove = remove;
 
     function loadStory(response){
         return response.data[0];
@@ -23,6 +24,15 @@ function StoryForEditService($q, $http, ToastService, StorageService){
         $q.when(StorageService.update(story))
             .then(alertSuccessfullyUpdatedStory)
             .catch(alertErrorOnUpdateStory);
+    };
+
+    function remove(id){
+        return $http.delete('/myStories/' + id)
+                .then(alertSuccessfullyDeletedStory)
+    };
+
+    function alertSuccessfullyDeletedStory(){
+        ToastService.success('História removida com sucesso.');
     };
 
     function alertSuccessfullyUpdatedStory(){

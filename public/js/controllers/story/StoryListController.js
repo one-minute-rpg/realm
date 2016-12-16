@@ -3,14 +3,15 @@ angular
     .config(StorySearchRoute)
     .controller('StoryListController', StoryListController);
 
-StoryListController.$inject = ['$scope', '$uibModal', '$state', 'storyList'];
+StoryListController.$inject = ['$scope', '$q', '$uibModal', '$state', 'storyList', 'StoryForEditService'];
 
-function StoryListController($scope, $uibModal, $state, storyList){
+function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForEditService){
 
     $scope.storyList = storyList;
 
     $scope.detail = detail;
     $scope.edit = edit;
+    $scope.remove = remove;
 
     function detail(story) {
         $uibModal.open({
@@ -22,6 +23,15 @@ function StoryListController($scope, $uibModal, $state, storyList){
                 storyDetail: story
             }
         });
+    };
+
+    function remove(id){
+        $q.when(StoryForEditService.remove(id))
+            .then(back);
+    };
+
+    function back(){
+        $state.reload('storyList');
     };
 
     function edit(story){
