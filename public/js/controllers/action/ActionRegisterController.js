@@ -30,7 +30,7 @@ function ActionRegisterController($scope, $q, $state, story, ActionForInsertServ
     };
 
     function back(){
-        $state.go('editAction', { story_id: story._id, scene_id: $state.params.scene_id, action_id: $scope.action.action_id });
+        $state.go('editScene', { story_id: story._id, scene_id: $state.params.scene_id });
     };
 };
 
