@@ -24,13 +24,15 @@ function StoryForListService($http){
                 _id: '',
                 title: {},
                 description: {},
-                cover: ''
+                cover: '',
+                sceneCount: null,
             };
 
             projection._id = story._id;
             projection.cover = story.cover;
             projection.title = story.title;
             projection.description = story.description;
+            projection.sceneCount = story.scenes.length;
 
             projections.push(projection);
         });

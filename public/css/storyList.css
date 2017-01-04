@@ -5,7 +5,7 @@
 
 .card{
     width: 200px;
-    height: 300px;
+    height: 240px;
     display: inline-block;
     color: #FFFFFF;
     margin-left: 10px;
@@ -53,10 +53,26 @@
         background-color: #121213;
         text-align: center;
         padding-top: 20px;
-    }
-
-    .card .footer{
-        height: 10px;
         border-top: solid 1px lightgray;
     }
 
+    .card .info-title{
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .card .info-footer{
+        height: 11px;
+        border-top: groove 1px lightgray ;
+        padding-top: 4px;
+    }
+
+    .card .info-footer .warning{
+        color: #FFCC00;
+    }
+
+.object-fit {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
