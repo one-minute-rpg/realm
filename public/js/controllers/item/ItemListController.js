@@ -57,7 +57,7 @@ function ItemListController($scope, $state, $uibModal) {
         var startIndex = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var endIndex = ($scope.itemsPerPage * $scope.currentPage);
 
-        return $scope.items.slice(startIndex, endIndex);
+        return !!$scope.items ? $scope.items.slice(startIndex, endIndex) : [];
     };
 
     function refreshList(){

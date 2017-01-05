@@ -2,14 +2,14 @@ angular.module('realm')
     .config(ItemEditrRoute)
     .controller('ItemEditController', ItemEditController);
     
-ItemEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'ItemType', 'ItemForEditService'];
+ItemEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'ItemType', 'ItemForEditService', 'ToastService'];
 
-function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, ItemForEditService) {
+function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, ItemForEditService, Toast) {
 
     $scope.story = story;
     $scope.item = {};
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -30,6 +30,15 @@ function ItemEditController($scope, $q, $state, $stateParams, story, ItemType, I
         $scope.showEvents = $scope.item.type == ItemType.INVENTORY;
     };
 
+    function submit(){
+        if($scope.forms.item.$valid){
+            save();
+        }else{
+            $scope.forms.item.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
+    };
+
     init();
 };
 
@@ -38,7 +47,7 @@ ItemEditrRoute.$inject = ['$stateProvider'];
 function ItemEditrRoute($stateProvider){
     
     $stateProvider.state('editItem', {
-        url: '/myStories/edit/:story_id/edit/item/quest/:item_id',
+        url: '/myStories/edit/:story_id/edit/item/:item_id',
         templateUrl: 'partials/item/item-maintenance.html',
         controller: 'ItemEditController',
         resolve: {

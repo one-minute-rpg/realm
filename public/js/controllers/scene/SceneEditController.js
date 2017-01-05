@@ -2,14 +2,14 @@ angular.module('realm')
     .config(SceneEditRoute)
     .controller('SceneEditController', SceneEditController);
     
-SceneEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'SceneForEditService'];
+SceneEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'SceneForEditService', 'ToastService'];
 
-function SceneEditController($scope, $q, $state, $stateParams, story, SceneForEditService) {
+function SceneEditController($scope, $q, $state, $stateParams, story, SceneForEditService, Toast) {
 
     $scope.story = story;
     $scope.scene = {};
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -27,6 +27,15 @@ function SceneEditController($scope, $q, $state, $stateParams, story, SceneForEd
         });
 
         $scope.scene = story.scenes[index];
+    };
+
+    function submit(){
+        if($scope.forms.scene.$valid){
+            save();
+        }else{
+            $scope.forms.scene.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 
     init();

@@ -3,12 +3,12 @@ angular
     .config(StoryEditRoute)
     .controller('StoryEditController', StoryEditController);
 
-StoryEditController.$inject = ['$scope', '$q', '$state', 'StoryForEditService', 'story'];
+StoryEditController.$inject = ['$scope', '$q', '$state', 'StoryForEditService', 'story', 'ToastService'];
 
-function StoryEditController($scope, $q, $state, StoryForEditService, story){
+function StoryEditController($scope, $q, $state, StoryForEditService, story, Toast){
 
     $scope.story = story;
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save() {
@@ -17,6 +17,15 @@ function StoryEditController($scope, $q, $state, StoryForEditService, story){
 
     function back(){
         $state.go('storyList');
+    };
+
+    function submit(){
+        if($scope.forms.register.$valid){
+            save();
+        }else{
+            $scope.forms.register.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 };
 

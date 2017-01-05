@@ -2,14 +2,14 @@ angular.module('realm')
     .config(ActionEditRoute)
     .controller('ActionEditController', ActionEditController);
     
-ActionEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'ActionForEditService'];
+ActionEditController.$inject = ['$scope', '$q', '$state', '$stateParams', 'story', 'ActionForEditService', 'ToastService'];
 
-function ActionEditController($scope, $q, $state, $stateParams, story, ActionForEditService) {
-    debugger;
+function ActionEditController($scope, $q, $state, $stateParams, story, ActionForEditService, Toast) {
+
     $scope.story = story;
     $scope.action = {};
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -36,6 +36,15 @@ function ActionEditController($scope, $q, $state, $stateParams, story, ActionFor
         $scope.action = scene.actions[index];
 
         $scope.requiredAttributes = $scope.action.require_attribute_value;
+    };
+
+    function submit(){
+        if($scope.forms.action.$valid){
+            save();
+        }else{
+            $scope.forms.action.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 
     init();

@@ -2,9 +2,9 @@ angular.module('realm')
     .config(SceneRegisterRoute)
     .controller('SceneRegisterController', SceneRegisterController);
     
-SceneRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'SceneForInsertService', 'SceneType'];
+SceneRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'SceneForInsertService', 'SceneType', 'ToastService'];
 
-function SceneRegisterController($scope, $q, $state, story, SceneForInsertService, SceneType) {
+function SceneRegisterController($scope, $q, $state, story, SceneForInsertService, SceneType, Toast) {
     
     $scope.scene = {};
     $scope.scene.on_die_events = [];
@@ -12,7 +12,7 @@ function SceneRegisterController($scope, $q, $state, story, SceneForInsertServic
 
     $scope.story = story;
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -24,6 +24,15 @@ function SceneRegisterController($scope, $q, $state, story, SceneForInsertServic
 
     function back(){
         $state.go('editScene', { story_id: story._id, scene_id: $scope.scene.scene_id });
+    };
+
+    function submit(){
+        if($scope.forms.scene.$valid){
+            save();
+        }else{
+            $scope.forms.scene.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 };
 

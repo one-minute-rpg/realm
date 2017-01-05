@@ -2,16 +2,16 @@ angular.module('realm')
     .config(ItemRegisterRoute)
     .controller('ItemRegisterController', ItemRegisterController);
     
-ItemRegisterController.$inject = ['$scope', '$q', '$state', 'ItemForInsertService', 'type', 'story', 'ItemType'];
+ItemRegisterController.$inject = ['$scope', '$q', '$state', 'ItemForInsertService', 'type', 'story', 'ItemType', 'ToastService'];
 
-function ItemRegisterController($scope, $q, $state, ItemForInsertService, type, story, ItemType) {
+function ItemRegisterController($scope, $q, $state, ItemForInsertService, type, story, ItemType, Toast) {
 
     $scope.item = {};
     $scope.item.events = [];
 
     $scope.showEvents = type == ItemType.INVENTORY;
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -23,6 +23,15 @@ function ItemRegisterController($scope, $q, $state, ItemForInsertService, type, 
 
     function back(){
         $state.go('editStory', { story_id: story._id });
+    };
+
+    function submit(){
+        if($scope.forms.item.$valid){
+            save();
+        }else{
+            $scope.forms.item.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 };
 

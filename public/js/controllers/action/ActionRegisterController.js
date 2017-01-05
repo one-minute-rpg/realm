@@ -2,9 +2,9 @@ angular.module('realm')
     .config(ActionRegisterRoute)
     .controller('ActionRegisterController', ActionRegisterController);
     
-ActionRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'ActionForInsertService'];
+ActionRegisterController.$inject = ['$scope', '$q', '$state', 'story', 'ActionForInsertService', 'ToastService'];
 
-function ActionRegisterController($scope, $q, $state, story, ActionForInsertService) {
+function ActionRegisterController($scope, $q, $state, story, ActionForInsertService, Toast) {
     
     $scope.action = {};
     $scope.action.events = [];
@@ -19,7 +19,7 @@ function ActionRegisterController($scope, $q, $state, story, ActionForInsertServ
 
     $scope.action.require_attribute_value = $scope.requiredAttributes;
 
-    $scope.save = save;
+    $scope.submit = submit;
     $scope.back = back;
 
     function save(){
@@ -31,6 +31,15 @@ function ActionRegisterController($scope, $q, $state, story, ActionForInsertServ
 
     function back(){
         $state.go('editScene', { story_id: story._id, scene_id: $state.params.scene_id });
+    };
+
+    function submit(){
+        if($scope.forms.action.$valid){
+            save();
+        }else{
+            $scope.forms.action.$setDirty();
+            Toast.error('Verifique as informações do formulário.');
+        }
     };
 };
 

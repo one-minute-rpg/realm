@@ -1,15 +1,27 @@
 <div class="row partial-wrapper">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-            <form>
+            <form name="forms.register">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Titulo</label>
-                                    <input type="text" ng-model="story.title" class="form-control" id="title" placeholder="Título">
+                                    <input type="text" class="form-control" 
+                                           ng-model="story.title" 
+                                           id="title" 
+                                           placeholder="Título" 
+                                           name="title" 
+                                           ng-maxlength="30"
+                                           ng-required="true" />
                                 </div>
+
+                                <div ng-messages="forms.register.title.$error" style="color:red" ng-if="forms.register.$dirty">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="maxlength">Título deve ter no máxima 30 caracteres</div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
@@ -45,7 +57,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <button class="btn btn-danger" ng-click="back()">Cancelar</button>
-                    <button class="btn btn-success" ng-click="save()">Salvar</button>
+                    <button class="btn btn-success" ng-click="submit()">Salvar</button>
                 </div>
                 <div class="col-lg-6">
                     <popover-menu ng-show="story._id" class="pull-right"></popover-menu>

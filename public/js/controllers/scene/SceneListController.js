@@ -22,7 +22,9 @@ function SceneListController($scope, $state, $uibModal) {
         var startIndex = (($scope.currentPage - 1) * $scope.scenesPerPage);
         var endIndex = ($scope.scenesPerPage * $scope.currentPage);
 
-        return $scope.scenes.slice(startIndex, endIndex);
+        var result = [];
+
+        return !!$scope.scenes ? $scope.scenes.slice(startIndex, endIndex) : [];
     };
 
     function edit(scene_id){
@@ -66,8 +68,8 @@ function SceneListController($scope, $state, $uibModal) {
 
     function removeSceneFromStory(scene){
         var index = $scope.scenes.indexOf(scene);
-
-        $scope.scenes.splice(index, 1);
+        if(!!$scope.scenes)
+            $scope.scenes.splice(index, 1);
 
         refreshList();
     };

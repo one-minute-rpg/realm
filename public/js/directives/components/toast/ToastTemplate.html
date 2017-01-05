@@ -2,7 +2,7 @@
 <div uib-alert 
     ng-repeat="alert in alerts" 
     close="close()" 
-    ng-class="'alert-' + (alert.type || 'warning')"
+    ng-class="'alert-' + (alert.type || 'warning') + ' toast'"
     class="myAlert"
     dismiss-on-timeout="{{timeout}}">
 {{alert.msg}}
