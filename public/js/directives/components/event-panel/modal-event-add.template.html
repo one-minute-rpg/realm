@@ -2,6 +2,8 @@
     <h4>Manutenção de Evento</h4>
 </div>
 <div class="modal-body">
+    <form name="forms.event">
+
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
@@ -14,15 +16,19 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group" ng-show="isChangeAttribute">
+            <div class="form-group" ng-if="isChangeAttribute">
                 <label for="attribute">Atributo</label>
-                <select class="form-control" id="attribute" ng-model="tempEvent.attribute">
+                <select class="form-control" id="attribute" ng-model="tempEvent.attribute" name="attribute" ng-required="true">
                     <option ng-repeat="attribute in attributes" value="{{attribute.type}}">{{attribute.text}}</option>
                 </select>
+
+                <div ng-messages="forms.event.attribute.$error" style="color:red" ng-if="forms.event.attribute.$invalid">
+                    <div ng-message="required">Campo obrigatório</div>
+                </div>
             </div>
-            <div class="form-group" ng-show="isGoToScene">
+            <div class="form-group" ng-if="isGoToScene">
                 <label for="scene">Cena</label>
-                <ui-select id="scene" ng-model="selectedScene" ng-change="changeScene(selectedScene)">
+                <ui-select id="scene" ng-model="selectedScene" name="scene" ng-required="true" ng-change="changeScene(selectedScene)">
                     <ui-select-match>
                         <span>{{selectedScene.title}}</span>
                     </ui-select-match>
@@ -30,35 +36,53 @@
                         <span ng-bind="scene.title"></span>
                     </ui-select-choices>
                 </ui-select>
+
+                <div ng-messages="forms.event.scene.$error" style="color:red" ng-if="forms.event.$dirty">
+                    <div ng-message="required">Campo obrigatório</div>
+                    <div ng-message="maxlength">Título deve ter no máxima 30 caracteres</div>
+                </div>
+
             </div>
-            <div class="form-group" ng-show="isAddItem || isRemoveItem || isUseItem">
+            <div class="form-group" ng-if="isAddItem || isRemoveItem || isUseItem">
                 <label for="item">Item</label>
-                <ui-select id="item" ng-model="selectedItem" ng-change="changeItem(selectedItem)" ng->
+                <ui-select id="item" ng-model="selectedItem" name="item" ng-required="true" ng-change="changeItem(selectedItem)" ng->
                     <ui-select-match>
-                        <span>{{selectedItem.name}}</span>
+                        <span ng-bind="selectedItem.name">{{selectedItem.name}}</span>
                     </ui-select-match>
                     <ui-select-choices repeat="item in (getAvailableItems() | filter: $select.search)">
                         <span ng-bind="item.name"></span>
                     </ui-select-choices>
                 </ui-select>
+
+                <div ng-messages="forms.event.item.$error" style="color:red" ng-if="forms.event.$dirty">
+                    <div ng-message="required">Campo obrigatório</div>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group" ng-show="isChangeAttribute">
+            <div class="form-group" ng-if="isChangeAttribute">
                 <label for="value">Valor</label>
-                <input type="number" id="value" class="form-control" ng-model="tempEvent.value" />
+                <input type="number" id="value" class="form-control" name="value" ng-required="true" ng-model="tempEvent.value" />
+        
+                <div ng-messages="forms.event.value.$error" style="color:red" ng-if="forms.event.value.$invalid">
+                    <div ng-message="required">Campo obrigatório</div>
+                </div>
             </div>
-            <div class="form-group" ng-show="isAddItem || isRemoveItem">
+            <div class="form-group" ng-if="isAddItem || isRemoveItem">
                 <label for="quantity">Quantidade</label>
-                <input type="number" id="quantity" ng-model="tempEvent.quantity" class="form-control" min="1" />
+                <input type="number" id="quantity" ng-model="tempEvent.quantity" name="quantity" ng-required="true" class="form-control" min="1" />
+            </div>
+
+            <div ng-messages="forms.event.quantity.$error" style="color:red" ng-if="forms.event.quantity.$invalid">
+                <div ng-message="required">Campo obrigatório</div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group" ng-show="isChangeAttribute || isGameOver || isVictory">
+            <div class="form-group" ng-if="isChangeAttribute || isGameOver || isVictory">
                 <label for="text">Texto</label>
                 <input type="text" id="text" class="form-control" ng-model="tempEvent.text" />
             </div>
@@ -73,5 +97,7 @@
         <div class="col-lg-2">
             <button class="btn btn-success pull-right" ng-click="confirm()">Ok</button>
         </div>
-    </div>   
+    </div>
+
+    </div>
 </div>

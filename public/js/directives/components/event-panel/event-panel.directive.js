@@ -339,10 +339,12 @@ angular.module('realm')
 
 //-------------MODAL BUTTONS
         function confirm(){
-            if(!!$scope.tempEvent.event_id){
-                updateEvent();
-            }else{
-                createEvent();
+            if(validate()){
+                if(!!$scope.tempEvent.event_id){
+                    updateEvent();
+                }else{
+                    createEvent();
+                };
             };
         };
 
@@ -350,6 +352,37 @@ angular.module('realm')
             $uibModalInstance.close();
         };
 
+//---------VALIDATE
+
+        function validate(){
+            
+            validateSceneSelect();
+
+            validateItemSelect();
+
+            return $scope.forms.event.$valid;
+
+        };
+
+        function validateSceneSelect(){
+            var sceneInput = $scope.forms.event.scene;
+
+            if(!!sceneInput && !sceneInput.$viewValue.scene_id){
+                sceneInput.$error.required = [sceneInput];
+                sceneInput.$valid = false;
+                $scope.forms.event.$valid = false;
+            }
+        };
+
+        function validateItemSelect(){
+            var itemInput = $scope.forms.event.item;
+
+            if(!!itemInput && !itemInput.$viewValue.item_id){
+                itemInput.$error.required = [itemInput];
+                itemInput.$valid = false;
+                $scope.forms.event.$valid = false;
+            }
+        };
 
 //----------CREATE EVENTS
         function createChangeAttributeEvent(){
