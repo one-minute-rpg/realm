@@ -73,10 +73,10 @@
             <div class="form-group" ng-if="isAddItem || isRemoveItem">
                 <label for="quantity">Quantidade</label>
                 <input type="number" id="quantity" ng-model="tempEvent.quantity" name="quantity" ng-required="true" class="form-control" min="1" />
-            </div>
-
-            <div ng-messages="forms.event.quantity.$error" style="color:red" ng-if="forms.event.quantity.$invalid">
-                <div ng-message="required">Campo obrigatório</div>
+            
+                <div ng-messages="forms.event.quantity.$error" style="color:red" ng-if="forms.event.quantity.$invalid">
+                    <div ng-message="required">Campo obrigatório</div>
+                </div>
             </div>
         </div>
     </div>
