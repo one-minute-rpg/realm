@@ -1,4 +1,6 @@
 .popover-button{
     border: none;
     border-radius: 50%;
+    font-size: 24px;
+    padding: 5px 15px
 }
