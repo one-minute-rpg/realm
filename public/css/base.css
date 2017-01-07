@@ -30,6 +30,7 @@ html,
 body {
     font-family: 'open_sansregular', sans-serif;
     height: 100%;
+    overflow: hidden;
 }
 
 .content {
@@ -84,7 +85,7 @@ body {
 
 .footer {
     position: absolute; 
-    bottom: 0; 
+    bottom: 30px; 
     width: 100%; 
 }
 
