@@ -27,8 +27,32 @@ function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForE
     };
 
     function remove(id){
-        $q.when(StoryForEditService.remove(id))
-            .then(back);
+        var modal = $uibModal.open({
+                        templateUrl: 'js/directives/components/modal/modal-confirmacao.template.html',
+                        controller: ['$scope', '$uibModalInstance', 'story_id', function($scope, $uibModalInstance, story_id){
+                            $scope.obj = { id: story_id };
+                            $scope.text = 'a aventura';
+                            $scope.confirm = function(obj){
+                                $uibModalInstance.close(obj);
+                            };
+
+                            $scope.cancel = function(){
+                                $uibModalInstance.close();
+                            };
+                        }],
+                        resolve: {
+                            story_id: function(){
+                                return id;
+                            }
+                        }
+                    });
+
+        modal.result.then(function(obj){
+            if(!!obj){
+                $q.when(StoryForEditService.remove(id))
+                    .then(back);
+            };
+        });
     };
 
     function publish(story_id){
