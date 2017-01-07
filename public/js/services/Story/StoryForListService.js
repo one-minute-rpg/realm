@@ -41,9 +41,9 @@ function StoryForListService($http){
         return projections;
     };
 
-    function publish(story_id){
+    function publish(story){
         debugger;
-        $http.post('/publish', { params: { story_id: story_id }});
+        $http.post('/publish', story);
     };
 
     return service;

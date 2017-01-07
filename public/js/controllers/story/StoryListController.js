@@ -32,7 +32,8 @@ function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForE
     };
 
     function publish(story_id){
-        StoryForListService.publish(story_id);
+        $q.when(StoryForEditService.findById(story_id))
+            .then(StoryForListService.publish);
     };
 
     function back(){

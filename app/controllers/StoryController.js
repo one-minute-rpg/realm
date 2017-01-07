@@ -91,20 +91,28 @@ module.exports = function(app) {
             header: { appkey: 'da8945882d90d542d4519cfa7a14a5bf' }
         };
 
-        var story;
-        var story_id = req.body.params.story_id;
+        var story = req.body;
 
-        find(story_id)
-            .then(function(data){
-                story = data[0]._doc;
-                story.quest_id = story.story_id;
-            })
-            .then(function(){
-                axios.post('http://localhost:3001/quest/publish', story, config);
-            });
+        story.quest_id = story.story_id;
 
-        
+        removeAllIds(story);
+
+        axios.post('http://localhost:3001/quest/publish', story, config);
     };
+
+function removeAllIds(obj) {
+    if(obj && obj._id) {
+        delete obj._id;
+        Object.keys(obj).forEach(function(key) {
+            removeAllIds(obj[key]); 
+        });
+    }
+    else if(obj && Array.isArray(obj)) {
+        obj.forEach(function(item) {
+            removeAllIds(item);
+        });
+    }
+}
 
     return controller;
 }
