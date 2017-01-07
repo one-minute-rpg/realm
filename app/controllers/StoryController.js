@@ -1,4 +1,6 @@
 var sanitize = require('mongo-sanitize');
+var axios = require('axios');
+
 
 module.exports = function(app) {
     var controller = {};
@@ -7,16 +9,25 @@ module.exports = function(app) {
     var StoryResume = app.models.StoryResume;
     var InternalServerError = app.models.error.InternalServerErrorModel;
 
+
+    function find(id) {
+        return Story.find({ '_id': id }).exec()
+            .then(function(story) {
+                if(!story.length){
+                    throw new InternalServerError('História inexistente.');
+                }
+                
+                return story;
+            });
+    }
+
     controller.find = function(req, res) {
         var _id = req.params.id;
 
         if (_id) {
-            var promise = Story.find({ '_id': _id }).exec()
+            var promise = find(_id)
                 .then(function(story) {
-                    if(!story.length){
-                        throw new InternalServerError('História inexistente.');
-                    }
-                    res.json(story);
+                    res.json(story)
                 })
                 .catch(function(error) {
                     delete error.error;
@@ -73,6 +84,26 @@ module.exports = function(app) {
                     return console.error(error);
                 }
             );
+    };
+
+    controller.publish = function(req, res){
+        var config = {
+            header: { appkey: 'da8945882d90d542d4519cfa7a14a5bf' }
+        };
+
+        var story;
+        var story_id = req.body.params.story_id;
+
+        find(story_id)
+            .then(function(data){
+                story = data[0]._doc;
+                story.quest_id = story.story_id;
+            })
+            .then(function(){
+                axios.post('http://localhost:3001/quest/publish', story, config);
+            });
+
+        
     };
 
     return controller;
