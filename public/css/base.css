@@ -41,6 +41,8 @@ body {
     height: 100%;
 }
 
+.ng-scope.ng-active {margin-bottom: 15px}
+
 .myAlert {
     position: absolute;
     z-index: 2;
@@ -91,4 +93,51 @@ body {
 
 .toast{
     margin-top: 20px !important;
+}
+
+
+
+/** SOBREPOSIÇÃO BOOTSTRAP **/
+.btn-primary {
+  background: #000;
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #c7965e;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #c7965e;
+  border-color: #c7965e;
+}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #c7965e;
+  border-color: #c7965e;
+}
+
+.btn-danger {
+  background: #000000;
+  border: none;
+  padding: 7px 40px;
+  font-size: 17px;
+}
+
+
+.btn-success {
+  background: #000000;
+  border: none;
+  padding: 7px 50px;
+  font-size: 17px;
 }
