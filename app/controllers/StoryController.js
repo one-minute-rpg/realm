@@ -97,7 +97,14 @@ module.exports = function(app) {
 
         removeAllIds(story);
 
-        axios.post('http://localhost:3001/quest/publish', story, config);
+        return axios.post('http://localhost:3001/quest/publish', story, config)
+                .then(function(response) {
+                    res.status(200).end();
+                })
+                .catch(function(error) {
+                    res.status(500).send();
+                    console.log(error);
+                });
     };
 
 function removeAllIds(obj) {

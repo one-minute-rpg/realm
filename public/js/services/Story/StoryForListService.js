@@ -42,8 +42,8 @@ function StoryForListService($http){
     };
 
     function publish(story){
-        debugger;
-        $http.post('/publish', story);
+         
+        return $http.post('/publish', story);
     };
 
     return service;

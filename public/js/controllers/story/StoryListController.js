@@ -3,9 +3,9 @@ angular
     .config(StorySearchRoute)
     .controller('StoryListController', StoryListController);
 
-StoryListController.$inject = ['$scope', '$q', '$uibModal', '$state', 'storyList', 'StoryForEditService', 'StoryForListService'];
+StoryListController.$inject = ['$scope', '$q', '$uibModal', '$state', 'storyList', 'StoryForEditService', 'StoryForListService', 'ToastService'];
 
-function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForEditService, StoryForListService){
+function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForEditService, StoryForListService, Toast){
 
     $scope.storyList = storyList;
 
@@ -56,8 +56,34 @@ function StoryListController($scope, $q, $uibModal, $state, storyList, StoryForE
     };
 
     function publish(story_id){
-        $q.when(StoryForEditService.findById(story_id))
-            .then(StoryForListService.publish);
+
+        var modal = $uibModal.open({
+                        templateUrl: 'js/directives/components/modal/modal-confirmacao-publish.template.html',
+                        controller: ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+                            $scope.confirm = function(obj){
+                                $uibModalInstance.close(obj);
+                            };
+
+                            $scope.cancel = function(){
+                                $uibModalInstance.close();
+                            };
+                        }]
+                    });
+
+        modal.result.then(function(obj){
+            if(!!obj){
+                $q.when(StoryForEditService.findById(story_id))
+                    .then(StoryForListService.publish)
+                    .then(function(){
+                         
+                        Toast.success('Aventura publicada com sucesso.');
+                    })
+                    .catch(function(){
+                         
+                        Toast.error('Houve um erro ao publicar a aventura.');
+                    });
+            };
+        });
     };
 
     function back(){

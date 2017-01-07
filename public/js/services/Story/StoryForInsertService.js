@@ -11,6 +11,7 @@ function StoryForInsertService($q, StorageService, ToastService){
 
     function insert(story) {
         story.story_id = chance.guid();
+        story.language = 'pt_br';
 
         if(validate(story)){
             return $q.when(StorageService.insert(story))
