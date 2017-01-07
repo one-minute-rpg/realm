@@ -13,4 +13,7 @@ module.exports = function(app) {
 
     app.route('/myStories')
         .get(controller.find);
+
+    app.route('/publish')
+        .post(controller.publish);
 }

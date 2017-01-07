@@ -3,9 +3,9 @@ angular
     .config(StoryEditRoute)
     .controller('StoryEditController', StoryEditController);
 
-StoryEditController.$inject = ['$scope', '$q', '$state', 'StoryForEditService', 'story', 'ToastService'];
+StoryEditController.$inject = ['$scope', '$q', '$state', 'StoryForEditService', 'story', 'ToastService', '$http'];
 
-function StoryEditController($scope, $q, $state, StoryForEditService, story, Toast){
+function StoryEditController($scope, $q, $state, StoryForEditService, story, Toast, $http){
 
     $scope.story = story;
     $scope.submit = submit;

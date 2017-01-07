@@ -7,6 +7,7 @@ function StoryForListService($http){
     var service = {};
 
     service.findStoriesForList = findStoriesForList;
+    service.publish = publish;
 
     function findStoriesForList(filters){
         return $http.get('/myStories')
@@ -38,6 +39,11 @@ function StoryForListService($http){
         });
 
         return projections;
+    };
+
+    function publish(story_id){
+        debugger;
+        $http.post('/publish', { params: { story_id: story_id }});
     };
 
     return service;

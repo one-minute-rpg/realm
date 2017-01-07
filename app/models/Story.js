@@ -5,6 +5,9 @@ module.exports = function() {
         story_id:{
             type: String
         },
+        language: {
+            type: String
+        },
         title: {
             type: String
         },
@@ -17,36 +20,16 @@ module.exports = function() {
         hero: {
             attributes: {
                 health: {
-                    current: {
-                        type: Number
-                    },
-                    max: {
-                        type: Number
-                    }
+                    type: Number
                 },
                 strength: {
-                    current: {
-                        type: Number
-                    },
-                    max: {
-                        type: Number
-                    }
+                    type: Number
                 },
                 agility: {
-                    current: {
-                        type: Number
-                    },
-                    max: {
-                        type: Number
-                    }
+                    type: Number
                 },
                 intelligence: {
-                    current: {
-                        type: Number
-                    },
-                    max: {
-                        type: Number
-                    }
+                    type: Number
                 }
             },
             items: [
