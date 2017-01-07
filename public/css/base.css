@@ -30,7 +30,7 @@ html,
 body {
     font-family: 'open_sansregular', sans-serif;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .content {
@@ -39,6 +39,7 @@ body {
 
 .container-fluid {
     height: 100%;
+    overflow: hidden
 }
 
 .ng-scope.ng-active {margin-bottom: 15px}
@@ -51,9 +52,25 @@ body {
     box-shadow: px 0 20px 0 #121213;
 }
 
+.fa.fa-home {
+    font-size: 19px;
+    padding-right: 10px;
+}
+
+.fa.fa-star {
+    padding-right: 10px;
+}
+
+.fa.fa-map {
+    padding-right: 14px;
+}
+
+
 .panel{
     background-color: #121213;
     height: 100%;
+    border-radius: 0; 
+    border: none;    
 }
 
     .panel .menu{
@@ -98,6 +115,8 @@ body {
 
 
 /** SOBREPOSIÇÃO BOOTSTRAP **/
+
+/** Botões **/
 .btn-primary {
   background: #000;
   border: none;
@@ -134,10 +153,72 @@ body {
   font-size: 17px;
 }
 
-
 .btn-success {
   background: #000000;
   border: none;
   padding: 7px 50px;
   font-size: 17px;
 }
+
+
+/** FORMS **/
+.form-control {
+  display: block;
+  width: 100%;
+  height: 45px;  
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #000;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #c7965e;
+  border-radius: 0;
+}
+
+textarea.form-control {
+  height: auto;
+  height: 170px
+}
+
+.form-control:focus {
+  border-color: #c7965e;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(199, 154, 94, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(199, 154, 94, .6);
+}
+.form-control::-moz-placeholder {
+  color: #000;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #000;
+}
+.form-control::-webkit-input-placeholder {
+  color: #000;
+}
+
+
+/** TABS **/
+.nav-tabs > li > a {
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #000;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+
+
