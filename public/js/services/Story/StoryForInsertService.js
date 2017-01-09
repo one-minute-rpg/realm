@@ -31,7 +31,6 @@ function StoryForInsertService($q, StorageService, ToastService){
 
         hero.items = [];
 
-        debugger;
         return hero;
     };
 
