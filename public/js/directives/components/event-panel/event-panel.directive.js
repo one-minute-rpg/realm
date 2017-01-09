@@ -391,7 +391,7 @@ angular.module('realm')
             event.type = $scope.tempEvent.type;
             event.attribute = $scope.tempEvent.attribute;
             event.value = $scope.tempEvent.value;
-            event.text = $scope.tempEvent.text;;
+            event.text = $scope.tempEvent.text;
 
             return event;
         };
@@ -421,7 +421,8 @@ angular.module('realm')
             return { 
                 type: $scope.tempEvent.type, 
                 item_id: $scope.selectedItem.item_id, 
-                quantity: $scope.tempEvent.quantity 
+                quantity: $scope.tempEvent.quantity,
+                text: $scope.tempEvent.text
             };
         };
 
@@ -429,14 +430,16 @@ angular.module('realm')
             return { 
                 type: $scope.tempEvent.type, 
                 item_id: $scope.selectedItem.item_id, 
-                quantity: $scope.tempEvent.quantity 
+                quantity: $scope.tempEvent.quantity,
+                text: $scope.tempEvent.text 
             };
         };
 
         function createUseItemEvent(){
             return {
                 type: $scope.tempEvent.type, 
-                item_id: $scope.selectedItem.item_id, 
+                item_id: $scope.selectedItem.item_id,
+                text: $scope.tempEvent.text
             };
         };
 
@@ -521,7 +524,8 @@ angular.module('realm')
                 event_id: tempEvent.event_id,
                 type: tempEvent.type,
                 item_id: $scope.selectedItem.item_id,
-                quantity: tempEvent.quantity
+                quantity: tempEvent.quantity,
+                text: tempEvent.text
             };
         };
 
