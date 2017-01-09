@@ -82,7 +82,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="form-group" ng-if="isChangeAttribute || isGameOver || isVictory">
+            <div class="form-group" ng-if="isChangeAttribute || isGameOver || isVictory || isAddItem || isRemoveItem || isUseItem">
                 <label for="text">Texto</label>
                 <input type="text" id="text" class="form-control" ng-model="tempEvent.text" />
             </div>
@@ -91,13 +91,11 @@
 </div>
 <div class="modal-footer">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-7">
             <button class="btn btn-danger pull-right" ng-click="cancel()">Cancelar</button>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-5">
             <button class="btn btn-success pull-right" ng-click="confirm()">Ok</button>
         </div>
-    </div>
-
     </div>
 </div>

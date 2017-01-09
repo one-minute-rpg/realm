@@ -14,7 +14,11 @@ function ActionEditController($scope, $q, $state, $stateParams, story, ActionFor
 
     function save(){
         $q.when(ActionForEditService.update(story))
-            .then(back);
+            .then(reload);
+    };
+
+    function reload(){
+        $state.go('editAction', { story_id: story._id, scene_id: $stateParams.scene_id, action_id: $scope.action.action_id });
     };
 
     function back(){
