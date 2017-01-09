@@ -1,6 +1,6 @@
 .storyList{
     background-color: #FFFFFF;
-    height: 100% !important;
+    /*height: 100% !important;*/
 }
 
 .titulo{
@@ -13,19 +13,21 @@
     display: inline-block;
     color: #FFFFFF;
     margin-left: 10px;
+    margin-bottom: 10px;
     z-index: 1;
+    float: left;
 }
 
     .card .header{
         height: 150px;
-        background-color: lightgray;
+        background-color: #cb9960;
         position: relative;
     }
 
         .card .header .edit-button{
             position: absolute;
             top: 150px;
-            left: 50%;
+            left: 45%;
             margin-top: -20px;
             margin-left: -60px;
             border-radius: 50%;
@@ -55,7 +57,7 @@
         .card .header .remove-button{
             position: absolute;
             top: 150px;
-            left: 50%;
+            left: 55%;
             margin-top: -20px;
             margin-left: 20px;
             border-radius: 50%;
@@ -72,12 +74,12 @@
         background-color: #121213;
         text-align: center;
         padding-top: 20px;
-        border-top: solid 1px lightgray;
     }
 
     .card .info-title{
         height: 40px;
-        line-height: 40px;
+        line-height: 20px;
+        padding: 13px 20px
     }
 
     .card .info-footer{
