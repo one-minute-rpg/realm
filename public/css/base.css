@@ -219,13 +219,15 @@ textarea.form-control {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #000;
+  color: #121213;
   cursor: default;
   background-color: #fff;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
 }
 
+.nav-tabs {border-bottom: 1px solid #d9c9b7}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {border-color: #d9c9b7 #d9c9b7 transparent;}
 
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, 
@@ -236,5 +238,25 @@ textarea.form-control {
     min-height: 0
 }
 
+.nav-tabs > li > a {color: #121213}
 
+.nav-tabs > li > a:hover {
+  border-color: #d9c9b7 #d9c9b7 #d9c9b7;
+}
 
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #d9c9b7;
+}
+
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > 
+.disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {border-color: #d9c9b7;}
+
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, 
+.pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {color: #C7965E}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > 
+.active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #121213;
+}
