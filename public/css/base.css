@@ -40,6 +40,7 @@ body {
 
 .content {
     height: 100%;
+    padding: 0
 }
 
 
@@ -154,7 +155,7 @@ body {
 .btn-danger {
   background: #000000;
   border: none;
-  padding: 7px 40px;
+  padding: 7px 30px;
   font-size: 17px;
 }
 
