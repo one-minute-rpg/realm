@@ -111,7 +111,7 @@ body {
 }
 
 .footer {
-    position: absolute;
+    /*position: absolute;*/
     bottom: -23px; 
     width: 100%; 
 }
