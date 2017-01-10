@@ -103,7 +103,7 @@ body {
     color: #000000;
     padding-top: 30px;
     padding-bottom: 30px;
-    height: 100%;
+    height: 768px;
 }
 
 .clickable{
@@ -111,8 +111,8 @@ body {
 }
 
 .footer {
-    /*position: absolute; */
-    bottom: 30px; 
+    position: absolute;
+    bottom: -23px; 
     width: 100%; 
 }
 
