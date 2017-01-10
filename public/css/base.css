@@ -277,3 +277,6 @@ textarea.form-control {
   background-color: #ffefdd;
   border-color: #d9c9b7;
 }
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, 
+.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {border-top: 1px solid #d9c9b7}
