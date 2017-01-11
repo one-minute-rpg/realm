@@ -18,12 +18,16 @@ function SceneRegisterController($scope, $q, $state, story, SceneForInsertServic
     function save(){
         if(!$scope.scene.scene_id){
             $q.when(SceneForInsertService.insert(story, $scope.scene, SceneType.DECISION))
-                .then(back);
+                .then(reload);
         }
     };
 
-    function back(){
+    function reload(){
         $state.go('editScene', { story_id: story._id, scene_id: $scope.scene.scene_id });
+    };
+
+    function back(){
+        $state.go('editStory', { story_id: story._id });
     };
 
     function submit(){
