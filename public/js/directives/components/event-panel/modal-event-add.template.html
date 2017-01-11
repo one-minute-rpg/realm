@@ -30,7 +30,7 @@
                 <label for="scene">Cena</label>
                 <ui-select id="scene" ng-model="selectedScene" name="scene" ng-required="true" ng-change="changeScene(selectedScene)">
                     <ui-select-match>
-                        <span>{{selectedScene.title}}</span>
+                        <span ng-bind="selectedScene.title">{{selectedScene.title}}</span>
                     </ui-select-match>
                     <ui-select-choices repeat="scene in (availableScenes | filter: $select.search)">
                         <span ng-bind="scene.title"></span>
